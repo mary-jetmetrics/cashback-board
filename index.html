@@ -59,11 +59,11 @@ h1{font-size:18px;font-weight:800;letter-spacing:-.4px}
   padding:12px 15px;margin-top:12px}
 .season-row .st{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:1.1px;
   color:var(--mute);margin-bottom:9px}
-.sgroup{display:flex;align-items:center;gap:11px;margin-bottom:7px;flex-wrap:wrap}
-.sgroup:last-child{margin-bottom:0}
+.srow{display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+.sgroup{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
 .sw{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:1px;
-  color:var(--mute);flex:0 0 84px}
-@media(max-width:640px){.sw{flex:0 0 100%}}
+  color:var(--mute);white-space:nowrap}
+@media(max-width:640px){.sgroup{width:100%}}
 .sgrid{display:flex;flex-wrap:wrap;gap:7px}
 .sitem{background:var(--on);border-radius:6px;padding:5px 10px;font-size:12.5px;font-weight:600;
   display:flex;align-items:center;gap:6px}
@@ -389,7 +389,7 @@ function buildGrid(){
     </div></div>
     <div class="season-row">
       <div class="st">Яндекс · сезонные за Свои Плюсы · до конца лета · не суммируются с категориями</div>
-      ${season}
+      <div class="srow">${season}</div>
     </div>`;
   document.getElementById('gs').oninput = e=>{
     const q=e.target.value.trim().toLowerCase();
