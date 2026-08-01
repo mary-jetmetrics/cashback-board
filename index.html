@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Кэшбэк — август 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f2f3f5;--card:#fff;--ink:#16181d;--mute:#8b9099;--line:#e6e8ec;
+  --on:#e8f9e0;--onb:#3ec13e;--accent:#111;--shop:#fff4e6;--shopb:#f59e0b;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#0f1114;--card:#181b20;--ink:#eef0f3;--mute:#8b9099;--line:#282c33;
+        --on:#14361a;--onb:#3ec13e;--accent:#eef0f3;--shop:#2e2410;--shopb:#f59e0b}
+}
+:root[data-theme="dark"]{--bg:#0f1114;--card:#181b20;--ink:#eef0f3;--mute:#8b9099;--line:#282c33;--on:#14361a;--onb:#3ec13e;--accent:#eef0f3;--shop:#2e2410;--shopb:#f59e0b}
+:root[data-theme="light"]{--bg:#f2f3f5;--card:#fff;--ink:#16181d;--mute:#8b9099;--line:#e6e8ec;--on:#e8f9e0;--onb:#3ec13e;--accent:#111;--shop:#fff4e6;--shopb:#f59e0b}
+body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
+  background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;padding:0 0 50px;line-height:1.45}
+.wrap{max-width:1240px;margin:0 auto;padding:0 14px}
+
+header{position:sticky;top:0;z-index:50;background:var(--bg);padding:13px 0 0;border-bottom:1px solid var(--line)}
+h1{font-size:18px;font-weight:800;letter-spacing:-.4px}
+.tabs{display:flex;gap:4px;margin-top:10px}
+.tab{padding:9px 16px;font-size:13.5px;font-weight:600;cursor:pointer;color:var(--mute);
+  border:none;background:none;border-bottom:2.5px solid transparent;font-family:inherit}
+.tab.act{color:var(--accent);border-bottom-color:var(--accent)}
+.pane{display:none;padding-top:16px}
+.pane.act{display:block}
+
+.pct{font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.3px}
+.p-hi{color:#1a9938}.p-mid{color:#e07b00}.p-lo{color:var(--mute)}
+@media (prefers-color-scheme:dark){.p-hi{color:#5bd75b}.p-mid{color:#f0a838}}
+.note{font-size:10.5px;color:var(--mute);margin-top:1px;line-height:1.3}
+.auto-tag{font-size:8.5px;background:#ddd6fe;color:#5b21b6;padding:1px 4px;border-radius:3px;
+  margin-left:4px;font-weight:700;vertical-align:1px}
+@media (prefers-color-scheme:dark){.auto-tag{background:#3b2a6b;color:#c4b5fd}}
+.s-tag{font-size:8.5px;background:var(--line);color:var(--mute);padding:1px 4px;border-radius:3px;
+  margin-left:4px;font-weight:700;vertical-align:1px}
+.search{width:100%;padding:11px 14px;font-size:15px;border:1.5px solid var(--line);
+  border-radius:10px;background:var(--card);color:var(--ink);font-family:inherit;margin-bottom:13px}
+.search:focus{outline:none;border-color:var(--onb)}
+
+/* ---- вкладка 1: сетка по банкам ---- */
+.grid-scroll{overflow-x:auto;padding-bottom:6px}
+.grid{display:grid;grid-template-columns:repeat(6,minmax(180px,1fr));gap:8px;min-width:1100px}
+.bhead{padding:8px 11px;border-radius:8px 8px 0 0;font-size:11.5px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.6px}
+.blimit{font-size:9.5px;font-weight:500;opacity:.75;text-transform:none;letter-spacing:0}
+.rowlabel{grid-column:1/-1;font-size:11px;font-weight:800;text-transform:uppercase;
+  letter-spacing:1.1px;color:var(--mute);margin:13px 0 2px;padding-left:2px}
+.cell{background:var(--card);border-radius:0 0 8px 8px;padding:7px;min-height:52px}
+.ci{display:flex;gap:7px;align-items:baseline;padding:5px 6px;border-radius:5px;
+  margin-bottom:2px;font-size:12.5px;background:var(--on);font-weight:600}
+.ci .pct{flex:0 0 auto;min-width:34px;font-size:12px}
+.ci.hide{display:none}
+.season-row{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:12px 15px;margin-top:12px}
+.season-row .st{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:1.1px;
+  color:var(--mute);margin-bottom:9px}
+.sgroup{display:flex;align-items:center;gap:11px;margin-bottom:7px;flex-wrap:wrap}
+.sgroup:last-child{margin-bottom:0}
+.sw{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:1px;
+  color:var(--mute);flex:0 0 84px}
+@media(max-width:640px){.sw{flex:0 0 100%}}
+.sgrid{display:flex;flex-wrap:wrap;gap:7px}
+.sitem{background:var(--on);border-radius:6px;padding:5px 10px;font-size:12.5px;font-weight:600;
+  display:flex;align-items:center;gap:6px}
+.sitem .pct{font-size:12.5px}
+
+/* ---- вкладка 2: категории колонками ---- */
+.cols{column-count:3;column-gap:11px}
+@media(max-width:1000px){.cols{column-count:2}}
+@media(max-width:640px){.cols{column-count:1}}
+.gcard{background:var(--card);border-radius:12px;padding:12px 13px 9px;margin:0 0 11px;
+  break-inside:avoid;-webkit-column-break-inside:avoid}
+.gt{font-size:13px;font-weight:800;margin-bottom:9px;display:flex;align-items:center;gap:7px}
+.sub{margin-bottom:10px}
+.sub-t{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.9px;
+  color:var(--mute);margin-bottom:4px}
+/* фиксированные колонки: % | название | М/Г | банк */
+.row{display:grid;grid-template-columns:54px 1fr 32px 44px;align-items:baseline;
+  gap:7px;padding:3px 2px;font-size:12.5px}
+.row .pct{white-space:nowrap}
+.who-pair{display:flex;gap:2px;justify-content:flex-end}
+.who-pair .who{padding:1px 3px}
+.row .pct{font-size:12.5px}
+.row .nm{min-width:0}
+.row .bk{font-size:9.5px;color:var(--mute);text-align:right;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+.who{font-size:8.5px;font-weight:800;padding:1px 4px;border-radius:3px;text-align:center;
+  justify-self:end;min-width:15px}
+.w-m{background:#fce7f3;color:#a81b60}
+.w-g{background:#dbeafe;color:#1e5eb8}
+.w-b{background:var(--line);color:var(--mute)}
+@media (prefers-color-scheme:dark){.w-m{background:#4a1733;color:#f9a8d4}.w-g{background:#16325c;color:#93c5fd}}
+.gcard.hide,.sub.hide,.row.hide{display:none}
+.legend{font-size:11px;color:var(--mute);margin-bottom:12px;display:flex;gap:14px;flex-wrap:wrap}
+.legend b{color:var(--ink)}
+.empty{text-align:center;padding:26px;color:var(--mute);font-size:13px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Кэшбэк — август 2026</h1>
+    <div class="tabs">
+      <button class="tab act" data-i="1">По банкам</button>
+      <button class="tab" data-i="2">По категориям</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="pane act" id="p1"></div>
+  <div class="pane" id="p2"></div>
+</div>
+
+<script>
+const DATA = {
+  month: "Август 2026",
+  // приоритет банков при равном % — чем меньше индекс, тем раньше платить
+  order: ["yandex","tinkoff","alfa","vtb","ozon","sber"],
+  banks: [
+    { id:"tinkoff", name:"Т-Банк",  color:"#ffdd2d", text:"#111", limit:"до 6 000 ₽/мес" },
+    { id:"alfa",    name:"Альфа",   color:"#ef3124", text:"#fff", limit:"до 5 000 ₽/мес" },
+    { id:"ozon",    name:"Озон",    color:"#005bff", text:"#fff", limit:"1 500 ₽/кат · 3 000 ₽/мес" },
+    { id:"vtb",     name:"ВТБ",     color:"#0a2896", text:"#fff", limit:"до 3 000 ₽/мес" },
+    { id:"sber",    name:"Сбер",    color:"#21a038", text:"#fff", limit:"до 10 000 бонусов/мес" },
+    { id:"yandex",  name:"Яндекс",  color:"#fc3f1d", text:"#fff", limit:"до 10 000 баллов/мес" }
+  ],
+  cats: {
+    tinkoff: {
+      gleb: [
+        {n:"Аптеки", p:7},
+        {n:"Маркетплейсы", p:5},
+        {n:"Супермаркеты", p:3},
+        {n:"Все покупки", p:1}
+      ],
+      masha: [
+        {n:"Шопинг в Городе", p:25, pmin:1, label:"до 25%"},
+        {n:"Супермаркеты в Городе", p:12},
+        {n:"Монетка", p:5},
+        {n:"Все покупки", p:1}
+      ]
+    },
+    alfa: {
+      gleb: [
+        {n:"Детский мир", p:7},
+        {n:"Цифровые товары", p:5},
+        {n:"Красота", p:5}
+      ],
+      masha: [
+        {n:"Техника", p:5},
+        {n:"Животные", p:5},
+        {n:"Активный отдых", p:5}
+      ]
+    },
+    ozon: {
+      gleb: [
+        {n:"Перекрёсток Доставка", p:10},
+        {n:"Отели", p:5},
+        {n:"Фастфуд", p:5},
+        {n:"Все покупки", p:1}
+      ],
+      masha: [
+        {n:"Медицинские клиники", p:5, note:"лимит 1 500 ₽"},
+        {n:"Отели", p:5},
+        {n:"Фастфуд", p:5},
+        {n:"Все покупки", p:1}
+      ]
+    },
+    vtb: {
+      gleb: [
+        {n:"РИВ ГОШ", p:15, note:"до 1 500 ₽"},
+        {n:"М.Косметик", p:10, note:"заказывать в «Живи с ВТБ»"},
+        {n:"Все остальные покупки", p:1.5}
+      ],
+      masha: [
+        {n:"zolla", p:20, note:"от 5 000 ₽"},
+        {n:"РИВ ГОШ", p:15, note:"до 1 500 ₽"},
+        {n:"Сервисы Яндекса", p:10, pmin:5, label:"5–10%", auto:true},
+        {n:"Детские товары", p:5}
+      ]
+    },
+    sber: {
+      gleb: [
+        {n:"Спортивные товары", p:10},
+        {n:"Автоуслуги", p:7},
+        {n:"Транспорт", p:4}
+      ],
+      masha: [
+        {n:"Парфюмерия и косметика", p:5},
+        {n:"Транспорт", p:4},
+        {n:"Кафе и рестораны", p:3}
+      ]
+    },
+    yandex: {
+      gleb: [
+        {n:"Яндекс Такси", p:5},
+        {n:"Красота", p:5},
+        {n:"Спортивные товары", p:5},
+        {n:"Кафе, бары и рестораны", p:3},
+        {n:"Все покупки", p:1}
+      ],
+      masha: [
+        {n:"Книги", p:10},
+        {n:"Яндекс Лавка", p:5},
+        {n:"Красота", p:5},
+        {n:"Кафе, бары и рестораны", p:3},
+        {n:"Все покупки", p:1}
+      ]
+    }
+  },
+  seasonal: [
+    {n:"ЛЭТУАЛЬ", p:25, who:"both"},
+    {n:"Бургер Кинг", p:25, who:"masha"},
+    {n:"Яндекс Такси", p:10, who:"both"},
+    {n:"Одежда и обувь", p:7, who:"both"}
+  ],
+
+  // ГРУППЫ. shops:true — конкретные магазины/сервисы (наценка, доставка, только онлайн)
+  groups: [
+    { t:"Конкретные магазины и сервисы", icon:"🏪", shops:true, last:true, subs:[
+      { t:"Косметика", items:[
+        {n:"ЛЭТУАЛЬ", p:25, who:"masha", bank:"yandex", season:true},
+        {n:"ЛЭТУАЛЬ", p:25, who:"gleb", bank:"yandex", season:true},
+        {n:"РИВ ГОШ", p:15, who:"masha", bank:"vtb", note:"до 1 500 ₽"},
+        {n:"РИВ ГОШ", p:15, who:"gleb", bank:"vtb", note:"до 1 500 ₽"},
+        {n:"М.Косметик", p:10, who:"gleb", bank:"vtb", note:"заказывать в «Живи с ВТБ»"}
+      ]},
+      { t:"Продукты", items:[
+        {n:"Перекрёсток Доставка", p:10, who:"gleb", bank:"ozon"},
+        {n:"Монетка", p:5, who:"masha", bank:"tinkoff"},
+        {n:"Яндекс Лавка", p:5, who:"masha", bank:"yandex"}
+      ]},
+      { t:"Одежда", items:[
+        {n:"zolla", p:20, who:"masha", bank:"vtb", note:"от 5 000 ₽"}
+      ]},
+      { t:"Еда", items:[
+        {n:"Бургер Кинг", p:25, who:"masha", bank:"yandex", season:true}
+      ]},
+      { t:"Детское", items:[
+        {n:"Детский мир", p:7, who:"gleb", bank:"alfa"}
+      ]},
+      { t:"Сервисы", items:[
+        {n:"Сервисы Яндекса", p:10, pmin:5, label:"5–10%", who:"masha", bank:"vtb", auto:true}
+      ]}
+    ]},
+
+    { t:"Еда и продукты", icon:"🛒", subs:[
+      { t:"Супермаркет", items:[
+        {n:"Супермаркеты в Городе", p:12, who:"masha", bank:"tinkoff"},
+        {n:"Супермаркеты", p:3, who:"gleb", bank:"tinkoff"}
+      ]},
+      { t:"Кафе", items:[
+        {n:"Фастфуд", p:5, who:"masha", bank:"ozon"},
+        {n:"Фастфуд", p:5, who:"gleb", bank:"ozon"},
+        {n:"Кафе, бары и рестораны", p:3, who:"masha", bank:"yandex"},
+        {n:"Кафе, бары и рестораны", p:3, who:"gleb", bank:"yandex"},
+        {n:"Кафе и рестораны", p:3, who:"masha", bank:"sber"}
+      ]}
+    ]},
+
+    { t:"Красота", icon:"💄", subs:[
+      { t:"", items:[
+        {n:"Красота", p:5, who:"masha", bank:"yandex"},
+        {n:"Красота", p:5, who:"gleb", bank:"yandex"},
+        {n:"Красота", p:5, who:"gleb", bank:"alfa"},
+        {n:"Парфюмерия и косметика", p:5, who:"masha", bank:"sber"}
+      ]}
+    ]},
+
+    { t:"Здоровье", icon:"🩺", subs:[
+      { t:"", items:[
+        {n:"Аптеки", p:7, who:"gleb", bank:"tinkoff"},
+        {n:"Медицинские клиники", p:5, who:"masha", bank:"ozon", note:"лимит 1 500 ₽"}
+      ]}
+    ]},
+
+    { t:"Спорт", icon:"🏓", subs:[
+      { t:"", items:[
+        {n:"Спортивные товары", p:10, who:"gleb", bank:"sber"},
+        {n:"Активный отдых", p:5, who:"masha", bank:"alfa"},
+        {n:"Спортивные товары", p:5, who:"gleb", bank:"yandex"}
+      ]}
+    ]},
+
+    { t:"Транспорт и авто", icon:"🚕", subs:[
+      { t:"Такси", items:[
+        {n:"Яндекс Такси", p:10, who:"masha", bank:"yandex", season:true},
+        {n:"Яндекс Такси", p:10, who:"gleb", bank:"yandex", season:true},
+        {n:"Яндекс Такси", p:5, who:"gleb", bank:"yandex"}
+      ]},
+      { t:"Транспорт", items:[
+        {n:"Транспорт", p:4, who:"masha", bank:"sber"},
+        {n:"Транспорт", p:4, who:"gleb", bank:"sber"}
+      ]},
+      { t:"Авто", items:[
+        {n:"Автоуслуги", p:7, who:"gleb", bank:"sber"}
+      ]}
+    ]},
+
+    { t:"Одежда и обувь", icon:"👗", subs:[
+      { t:"", items:[
+        {n:"Шопинг в Городе", p:25, pmin:1, label:"до 25%", who:"masha", bank:"tinkoff"},
+        {n:"Одежда и обувь", p:7, who:"masha", bank:"yandex", season:true},
+        {n:"Одежда и обувь", p:7, who:"gleb", bank:"yandex", season:true}
+      ]}
+    ]},
+
+    { t:"Прочее", icon:"📦", subs:[
+      { t:"", items:[
+        {n:"Книги", p:10, who:"masha", bank:"yandex"},
+        {n:"Маркетплейсы", p:5, who:"gleb", bank:"tinkoff"},
+        {n:"Техника", p:5, who:"masha", bank:"alfa"},
+        {n:"Животные", p:5, who:"masha", bank:"alfa"},
+        {n:"Детские товары", p:5, who:"masha", bank:"vtb"},
+        {n:"Цифровые товары", p:5, who:"gleb", bank:"alfa"},
+        {n:"Отели, тур", p:5, who:"masha", bank:"ozon"},
+        {n:"Отели, тур", p:5, who:"gleb", bank:"ozon"}
+      ]},
+      { t:"Всё остальное", items:[
+        {n:"Все остальные покупки", p:1.5, who:"gleb", bank:"vtb"},
+        {n:"Все покупки", p:1, who:"masha", bank:"yandex"},
+        {n:"Все покупки", p:1, who:"gleb", bank:"yandex"},
+        {n:"Все покупки", p:1, who:"masha", bank:"tinkoff"},
+        {n:"Все покупки", p:1, who:"gleb", bank:"tinkoff"},
+        {n:"Все покупки", p:1, who:"masha", bank:"ozon"},
+        {n:"Все покупки", p:1, who:"gleb", bank:"ozon"}
+      ]}
+    ]}
+  ]
+};
+const PEOPLE = { masha:"Маша", gleb:"Глеб" };
+
+
+const bankById = id => DATA.banks.find(b=>b.id===id);
+const fmt = c => c.label || (String(c.p).replace('.',',')+'%');
+// цвет процента: <5% серый, ровно 5% оранжевый, >5% зелёный
+// у диапазонов («5–10%», «до 25%») красим по НИЖНЕЙ границе — банки редко дают максимум
+const cls = (p,c) => { const v = (c && c.pmin!=null) ? c.pmin : p;
+  return v>5?'p-hi':(v===5?'p-mid':'p-lo'); };
+const esc = s => String(s).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+const rank = b => { const i=DATA.order.indexOf(b); return i<0?99:i; };
+// банки в едином порядке приоритета — и в сетке, и в сортировке
+const BANKS = DATA.order.map(id=>bankById(id));
+// сортировка: сначала % по убыванию, при равенстве — приоритет банка
+const sortItems = a => a.slice().sort((x,y)=> y.p-x.p || rank(x.bank)-rank(y.bank));
+// одна и та же категория в одном банке с одним % у обоих — схлопываем в строку с меткой «МГ»
+const mergeBoth = list => {
+  const out=[], seen=new Map();
+  for(const it of list){
+    const k=[it.n,it.bank,it.p,it.label||'',it.note||'',it.season?1:0].join('|');
+    if(seen.has(k)){ seen.get(k).who='both'; continue; }
+    const copy={...it}; seen.set(k,copy); out.push(copy);
+  }
+  return out;
+};
+
+/* ---------- вкладка 1 ---------- */
+function buildGrid(){
+  const row = who => BANKS.map(b=>{
+    const list=(DATA.cats[b.id][who]||[]).slice().sort((x,y)=>y.p-x.p);
+    return `<div class="cell">`+list.map(c=>`<div class="ci" data-n="${esc(c.n.toLowerCase())}">
+      <span class="pct ${cls(c.p,c)}">${fmt(c)}</span>
+      <span>${esc(c.n)}${c.auto?'<span class="auto-tag">авто</span>':''}
+      ${c.note?`<div class="note">${esc(c.note)}</div>`:''}</span></div>`).join('')+`</div>`;
+  }).join('');
+  const heads = BANKS.map(b=>
+    `<div class="bhead" style="background:${b.color};color:${b.text}">${b.name}
+      <div class="blimit">${b.limit}</div></div>`).join('');
+  const sgroup = (label, list) => !list.length ? '' : `<div class="sgroup">
+    <div class="sw">${label}</div>
+    <div class="sgrid">${list.map(s=>
+      `<div class="sitem"><span class="pct ${cls(s.p)}">${s.p}%</span>${esc(s.n)}</div>`).join('')}</div>
+  </div>`;
+  const season = sgroup('Оба', DATA.seasonal.filter(s=>s.who==='both'))
+               + sgroup('Только Маша', DATA.seasonal.filter(s=>s.who==='masha'))
+               + sgroup('Только Глеб', DATA.seasonal.filter(s=>s.who==='gleb'));
+  document.getElementById('p1').innerHTML=`
+    <input class="search" id="gs" placeholder="Поиск по категориям">
+    <div class="grid-scroll"><div class="grid">
+      ${heads}
+      <div class="rowlabel">Глеб</div>${row('gleb')}
+      <div class="rowlabel">Маша</div>${row('masha')}
+    </div></div>
+    <div class="season-row">
+      <div class="st">Яндекс · сезонные за Свои Плюсы · до конца лета · не суммируются с категориями</div>
+      ${season}
+    </div>`;
+  document.getElementById('gs').oninput = e=>{
+    const q=e.target.value.trim().toLowerCase();
+    document.querySelectorAll('#p1 .ci').forEach(el=>
+      el.classList.toggle('hide', q && !el.dataset.n.includes(q)));
+  };
+}
+
+/* ---------- вкладка 2 ---------- */
+function buildCats(){
+  const card = g=>{
+    // в группе магазинов подгруппы с ≤2 строками сливаем в общее «Прочее»
+    let gsubs = g.subs;
+    if(g.shops){
+      const keep = g.subs.filter(s=>s.items.length>2);
+      const rest = g.subs.filter(s=>s.items.length<=2).flatMap(s=>s.items);
+      gsubs = rest.length ? [...keep, {t:"Прочее", items:sortItems(rest)}] : keep;
+    }
+    const subs = gsubs.map(s=>{
+      const items = mergeBoth(sortItems(s.items));
+      return `<div class="sub" data-t="${esc(s.t.toLowerCase())}">
+        ${s.t?`<div class="sub-t">${esc(s.t)}</div>`:''}
+        ${items.map(it=>{
+          const b=bankById(it.bank);
+          return `<div class="row" data-n="${esc((it.n+' '+s.t).toLowerCase())}">
+            <span class="pct ${cls(it.p,it)}">${it.label||it.p+'%'}</span>
+            <span class="nm">${esc(it.n)}${it.season?'<span class="s-tag">сезон</span>':''}${it.auto?'<span class="auto-tag">авто</span>':''}
+              ${it.note?`<div class="note">${esc(it.note)}</div>`:''}</span>
+            ${it.who==='both'
+              ? '<span class="who-pair"><span class="who w-m">М</span><span class="who w-g">Г</span></span>'
+              : `<span class="who ${it.who==='masha'?'w-m':'w-g'}">${PEOPLE[it.who][0]}</span>`}
+            <span class="bk">${b.name}</span></div>`;
+        }).join('')}</div>`;
+    }).join('');
+    return `<div class="gcard" data-g="${esc(g.t.toLowerCase())}">
+      <div class="gt">${g.icon} ${esc(g.t)}</div>
+      ${subs}</div>`;
+  };
+  document.getElementById('p2').innerHTML=`
+    <input class="search" id="cs" placeholder="Что покупаете? Например: аптека, косметика, такси">
+    <div class="legend">
+      <span><b>М</b> / <b>Г</b> — чья карта</span>
+      <span>Внутри группы сверху выгоднее. При равном % приоритет: Яндекс → Т-Банк → Альфа → ВТБ → Озон → Сбер</span>
+    </div>
+    <div class="cols" id="cbox">${
+      DATA.groups.slice().sort((a,b)=>(a.last?1:0)-(b.last?1:0)).map(card).join('')}</div>`;
+  document.getElementById('cs').oninput = e=>{
+    const q=e.target.value.trim().toLowerCase();
+    let vis=0;
+    document.querySelectorAll('#p2 .gcard').forEach(g=>{
+      let gv=0;
+      g.querySelectorAll('.sub').forEach(s=>{
+        let sv=0;
+        s.querySelectorAll('.row').forEach(r=>{
+          const hit=!q||r.dataset.n.includes(q)||s.dataset.t.includes(q)||g.dataset.g.includes(q);
+          r.classList.toggle('hide',!hit); if(hit)sv++;
+        });
+        s.classList.toggle('hide',!sv); if(sv)gv++;
+      });
+      g.classList.toggle('hide',!gv); if(gv)vis++;
+    });
+    const old=document.querySelector('#p2 .empty'); if(old)old.remove();
+    if(!vis) document.getElementById('cbox').insertAdjacentHTML('afterend',
+      '<div class="empty">Ничего не нашлось. Платите ВТБ Глеба — 1,5% на всё.</div>');
+  };
+}
+
+document.querySelector('.tabs').onclick = e=>{
+  const b=e.target.closest('.tab'); if(!b)return;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('act'));
+  document.querySelectorAll('.pane').forEach(t=>t.classList.remove('act'));
+  b.classList.add('act');
+  document.getElementById('p'+b.dataset.i).classList.add('act');
+};
+
+buildGrid();buildCats();
+</script>
+</body>
+</html>
