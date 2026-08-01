@@ -3,315 +3,186 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Иконки — второй заход</title>
+<title>Иконки — третий заход</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;
-  background:#0f1114;color:#eef0f3;padding:26px 16px 70px}
-h1{font-size:20px;font-weight:800;margin-bottom:4px}
-.sub{font-size:13px;color:#8b9099;margin-bottom:22px}
-h2{max-width:1120px;margin:34px auto 14px;font-size:13px;font-weight:800;
+  background:#e9eaee;color:#16181d;padding:24px 16px 70px}
+h1{font-size:20px;font-weight:800;margin-bottom:3px}
+.sub{font-size:12.5px;color:#8b9099;margin-bottom:20px}
+h2{max-width:1140px;margin:32px auto 13px;font-size:12px;font-weight:800;
   text-transform:uppercase;letter-spacing:1.2px;color:#8b9099}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
-  gap:18px;max-width:1120px;margin:0 auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));
+  gap:16px;max-width:1140px;margin:0 auto}
 .card{text-align:center}
-.ic{width:112px;height:112px;margin:0 auto 9px;border-radius:25px;overflow:hidden;
-  box-shadow:0 4px 16px rgba(0,0,0,.5)}
+.ic{width:106px;height:106px;margin:0 auto 8px;border-radius:24px;overflow:hidden;
+  box-shadow:0 5px 16px rgba(0,0,0,.16)}
 .ic svg{display:block;width:100%;height:100%}
-.small{width:58px;height:58px;border-radius:13px;margin:8px auto 0;overflow:hidden;opacity:.95}
+.small{width:56px;height:56px;border-radius:13px;margin:7px auto 0;overflow:hidden;
+  box-shadow:0 2px 6px rgba(0,0,0,.14)}
 .small svg{display:block;width:100%;height:100%}
-.n{font-size:12px;font-weight:700}
-.d{font-size:10px;color:#8b9099;margin-top:2px;line-height:1.35}
-.hint{max-width:1120px;margin:0 auto;font-size:12.5px;color:#8b9099;
-  background:#181b20;padding:11px 14px;border-radius:10px;border-left:3px solid #3ec13e}
-.lbl{font-size:9px;color:#5c6068;margin-top:6px;text-transform:uppercase;letter-spacing:.8px}
+.n{font-size:11.5px;font-weight:700}
+.d{font-size:10px;color:#8b9099;margin-top:2px;line-height:1.3}
+.lbl{font-size:8.5px;color:#a8acb3;margin-top:5px;text-transform:uppercase;letter-spacing:.7px}
+.hint{max-width:1140px;margin:0 auto;font-size:12.5px;color:#5c6068;
+  background:#fff;padding:11px 14px;border-radius:10px}
 </style>
 </head>
 <body>
 
-<h1>Иконки — второй заход</h1>
-<div class="sub">Меньше деталей, больше силуэта. Под каждой — как выглядит в реальном размере на телефоне</div>
+<h1>Иконки — третий заход</h1>
+<div class="sub">Отталкиваюсь от того, что понравилось: светлая карточка на спокойном фоне</div>
+<div class="hint">Под каждой — реальный размер на домашнем экране.</div>
 
-<div class="hint">Принцип: один сильный элемент вместо набора мелочей. Приглушённая палитра вместо ярких градиентов.</div>
-
-<h2>Минимализм</h2>
+<h2>Карточка на цвете</h2>
 <div class="grid">
 
-  <div class="card"><div class="ic"><svg viewBox="0 0 180 180">
-    <rect width="180" height="180" fill="#0d0d0f"/>
-    <text x="90" y="126" font-family="Georgia,'Times New Roman',serif" font-size="112"
-      fill="#f5f5f0" text-anchor="middle">%</text>
-  </svg></div><div class="n">1 · Антиква</div><div class="d">Засечки, глубокий чёрный</div>
-  <div class="small"><svg viewBox="0 0 180 180">
-    <rect width="180" height="180" fill="#0d0d0f"/>
-    <text x="90" y="126" font-family="Georgia,serif" font-size="112" fill="#f5f5f0" text-anchor="middle">%</text>
-  </svg></div><div class="lbl">реальный размер</div></div>
+  <div class="card"><div class="ic"><svg viewBox="0 0 180 180" id="s1">
+    <rect width="180" height="180" fill="#f2c8d8"/>
+    <g transform="rotate(-8 90 90)">
+      <rect x="34" y="60" width="112" height="70" rx="11" fill="#fff"/>
+      <rect x="34" y="60" width="112" height="70" rx="11" fill="none" stroke="#00000012"/>
+      <rect x="46" y="76" width="30" height="8" rx="4" fill="#e8b4c8"/>
+      <text x="122" y="118" font-family="Georgia,serif" font-size="34" fill="#c2185b" text-anchor="middle">%</text>
+    </g>
+  </svg></div><div class="n">1 · Розовая</div><div class="d">Карточка с наклоном</div>
+  <div class="small"><svg viewBox="0 0 180 180"><use href="#s1"/></svg></div><div class="lbl">размер</div></div>
 
-  <div class="card"><div class="ic"><svg viewBox="0 0 180 180">
-    <rect width="180" height="180" fill="#e8e4dc"/>
-    <text x="90" y="124" font-family="Georgia,serif" font-size="108"
-      fill="#1a1a18" text-anchor="middle">%</text>
-  </svg></div><div class="n">2 · Инверсия</div><div class="d">Тёплый светлый фон</div>
-  <div class="small"><svg viewBox="0 0 180 180">
-    <rect width="180" height="180" fill="#e8e4dc"/>
-    <text x="90" y="124" font-family="Georgia,serif" font-size="108" fill="#1a1a18" text-anchor="middle">%</text>
-  </svg></div><div class="lbl">реальный размер</div></div>
+  <div class="card"><div class="ic"><svg viewBox="0 0 180 180" id="s2">
+    <rect width="180" height="180" fill="#cfe3d4"/>
+    <g transform="rotate(-8 90 90)">
+      <rect x="34" y="60" width="112" height="70" rx="11" fill="#fff"/>
+      <rect x="46" y="76" width="30" height="8" rx="4" fill="#a8ccb2"/>
+      <text x="122" y="118" font-family="Georgia,serif" font-size="34" fill="#1a7a3c" text-anchor="middle">%</text>
+    </g>
+  </svg></div><div class="n">2 · Зелёная</div><div class="d">Спокойный мятный</div>
+  <div class="small"><svg viewBox="0 0 180 180"><use href="#s2"/></svg></div><div class="lbl">размер</div></div>
 
-  <div class="card"><div class="ic"><svg viewBox="0 0 180 180">
-    <rect width="180" height="180" fill="#12261a"/>
-    <circle cx="63" cy="66" r="17" fill="none" stroke="#4ade80" stroke-width="9"/>
-    <circle cx="117" cy="114" r="17" fill="none" stroke="#4ade80" stroke-width="9"/>
-    <line x1="126" y1="52" x2="54" y2="128" stroke="#4ade80" stroke-width="9" stroke-linecap="round"/>
-  </svg></div><div class="n">3 · Знак процента</div><div class="d">Нарисован линиями, не шрифтом</div>
-  <div class="small"><svg viewBox="0 0 180 180">
-    <rect width="180" height="180" fill="#12261a"/>
-    <circle cx="63" cy="66" r="17" fill="none" stroke="#4ade80" stroke-width="9"/>
-    <circle cx="117" cy="114" r="17" fill="none" stroke="#4ade80" stroke-width="9"/>
-    <line x1="126" y1="52" x2="54" y2="128" stroke="#4ade80" stroke-width="9" stroke-linecap="round"/>
-  </svg></div><div class="lbl">реальный размер</div></div>
+  <div class="card"><div class="ic"><svg viewBox="0 0 180 180" id="s3">
+    <rect width="180" height="180" fill="#f0e0c0"/>
+    <g transform="rotate(-8 90 90)">
+      <rect x="34" y="60" width="112" height="70" rx="11" fill="#fff"/>
+      <rect x="46" y="76" width="30" height="8" rx="4" fill="#e0c48a"/>
+      <text x="122" y="118" font-family="Georgia,serif" font-size="34" fill="#8a6410" text-anchor="middle">%</text>
+    </g>
+  </svg></div><div class="n">3 · Песочная</div><div class="d">Тёплый беж</div>
+  <div class="small"><svg viewBox="0 0 180 180"><use href="#s3"/></svg></div><div class="lbl">размер</div></div>
 
-  <div class="card"><div class="ic"><svg viewBox="0 0 180 180">
-    <rect width="180" height="180" fill="#1c1c1e"/>
-    <rect x="34" y="58" width="112" height="70" rx="10" fill="none" stroke="#f5f5f0" stroke-width="7"/>
-    <line x1="34" y1="80" x2="146" y2="80" stroke="#f5f5f0" stroke-width="7"/>
-  </svg></div><div class="n">4 · Контур карты</div><div class="d">Только линии, ничего лишнего</div>
-  <div class="small"><svg viewBox="0 0 180 180">
-    <rect width="180" height="180" fill="#1c1c1e"/>
-    <rect x="34" y="58" width="112" height="70" rx="10" fill="none" stroke="#f5f5f0" stroke-width="7"/>
-    <line x1="34" y1="80" x2="146" y2="80" stroke="#f5f5f0" stroke-width="7"/>
-  </svg></div><div class="lbl">реальный размер</div></div>
+  <div class="card"><div class="ic"><svg viewBox="0 0 180 180" id="s4">
+    <rect width="180" height="180" fill="#1c2536"/>
+    <g transform="rotate(-8 90 90)">
+      <rect x="34" y="60" width="112" height="70" rx="11" fill="#fff"/>
+      <rect x="46" y="76" width="30" height="8" rx="4" fill="#c9d3e3"/>
+      <text x="122" y="118" font-family="Georgia,serif" font-size="34" fill="#1c2536" text-anchor="middle">%</text>
+    </g>
+  </svg></div><div class="n">4 · Ночная</div><div class="d">Белая карта на тёмном</div>
+  <div class="small"><svg viewBox="0 0 180 180"><use href="#s4"/></svg></div><div class="lbl">размер</div></div>
 
 </div>
 
-<h2>С характером</h2>
+<h2>Две карточки — вас двое</h2>
 <div class="grid">
 
-  <div class="card"><div class="ic"><svg viewBox="0 0 180 180">
-    <rect width="180" height="180" fill="#0d0d0f"/>
-    <text x="90" y="120" font-family="Georgia,serif" font-size="104"
-      fill="#d4af37" text-anchor="middle">%</text>
-    <rect x="52" y="138" width="76" height="4" rx="2" fill="#d4af37" opacity=".55"/>
-  </svg></div><div class="n">5 · Золото на чёрном</div><div class="d">Дорого, спокойно</div>
-  <div class="small"><svg viewBox="0 0 180 180">
-    <rect width="180" height="180" fill="#0d0d0f"/>
-    <text x="90" y="120" font-family="Georgia,serif" font-size="104" fill="#d4af37" text-anchor="middle">%</text>
-    <rect x="52" y="138" width="76" height="4" rx="2" fill="#d4af37" opacity=".55"/>
-  </svg></div><div class="lbl">реальный размер</div></div>
+  <div class="card"><div class="ic"><svg viewBox="0 0 180 180" id="s5">
+    <rect width="180" height="180" fill="#eceef2"/>
+    <g transform="rotate(-13 90 90)"><rect x="30" y="52" width="106" height="66" rx="10" fill="#f6b8cf"/></g>
+    <g transform="rotate(6 90 90)"><rect x="46" y="74" width="106" height="66" rx="10" fill="#fff"/>
+      <text x="130" y="124" font-family="Georgia,serif" font-size="30" fill="#2563eb" text-anchor="middle">%</text></g>
+  </svg></div><div class="n">5 · Веер из двух</div><div class="d">Розовая и белая внахлёст</div>
+  <div class="small"><svg viewBox="0 0 180 180"><use href="#s5"/></svg></div><div class="lbl">размер</div></div>
 
-  <div class="card"><div class="ic"><svg viewBox="0 0 180 180">
-    <rect width="180" height="180" fill="#f5f5f0"/>
-    <circle cx="90" cy="90" r="52" fill="#0d0d0f"/>
-    <text x="90" y="112" font-family="Georgia,serif" font-size="62"
-      fill="#f5f5f0" text-anchor="middle">%</text>
-  </svg></div><div class="n">6 · Печать</div><div class="d">Круг на светлом</div>
-  <div class="small"><svg viewBox="0 0 180 180">
-    <rect width="180" height="180" fill="#f5f5f0"/>
-    <circle cx="90" cy="90" r="52" fill="#0d0d0f"/>
-    <text x="90" y="112" font-family="Georgia,serif" font-size="62" fill="#f5f5f0" text-anchor="middle">%</text>
-  </svg></div><div class="lbl">реальный размер</div></div>
+  <div class="card"><div class="ic"><svg viewBox="0 0 180 180" id="s6">
+    <rect width="180" height="180" fill="#12161d"/>
+    <g transform="rotate(-13 90 90)"><rect x="30" y="52" width="106" height="66" rx="10" fill="#f6b8cf"/></g>
+    <g transform="rotate(6 90 90)"><rect x="46" y="74" width="106" height="66" rx="10" fill="#a8c8f0"/>
+      <text x="130" y="124" font-family="Georgia,serif" font-size="30" fill="#12161d" text-anchor="middle">%</text></g>
+  </svg></div><div class="n">6 · Розовая и голубая</div><div class="d">Ваши цвета из файла</div>
+  <div class="small"><svg viewBox="0 0 180 180"><use href="#s6"/></svg></div><div class="lbl">размер</div></div>
 
-  <div class="card"><div class="ic"><svg viewBox="0 0 180 180">
-    <defs><linearGradient id="dp" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#1e3a2f"/><stop offset="1" stop-color="#0d1f18"/></linearGradient></defs>
-    <rect width="180" height="180" fill="url(#dp)"/>
-    <text x="90" y="118" font-family="-apple-system,Helvetica,Arial" font-size="86"
-      font-weight="300" fill="#e8e4dc" text-anchor="middle">%</text>
-  </svg></div><div class="n">7 · Тонкий гротеск</div><div class="d">Лёгкое начертание, тёмная зелень</div>
-  <div class="small"><svg viewBox="0 0 180 180">
-    <rect width="180" height="180" fill="#16302a"/>
-    <text x="90" y="118" font-family="-apple-system,Helvetica,Arial" font-size="86"
-      font-weight="300" fill="#e8e4dc" text-anchor="middle">%</text>
-  </svg></div><div class="lbl">реальный размер</div></div>
+  <div class="card"><div class="ic"><svg viewBox="0 0 180 180" id="s7">
+    <rect width="180" height="180" fill="#f6f4ef"/>
+    <g transform="rotate(-16 88 92)"><rect x="30" y="56" width="100" height="62" rx="10"
+      fill="#fff" stroke="#e3ded3" stroke-width="2"/></g>
+    <g transform="rotate(-4 90 92)"><rect x="40" y="66" width="100" height="62" rx="10"
+      fill="#fff" stroke="#e3ded3" stroke-width="2"/></g>
+    <g transform="rotate(9 92 92)"><rect x="50" y="76" width="100" height="62" rx="10" fill="#1a1a1c"/>
+      <text x="128" y="122" font-family="Georgia,serif" font-size="30" fill="#f6f4ef" text-anchor="middle">%</text></g>
+  </svg></div><div class="n">7 · Стопка</div><div class="d">Много карт, верхняя чёрная</div>
+  <div class="small"><svg viewBox="0 0 180 180"><use href="#s7"/></svg></div><div class="lbl">размер</div></div>
 
-  <div class="card"><div class="ic"><svg viewBox="0 0 180 180">
-    <rect width="180" height="180" fill="#1a1a1c"/>
-    <text x="90" y="82" font-family="-apple-system,Helvetica,Arial" font-size="34"
-      font-weight="800" fill="#f5f5f0" text-anchor="middle" letter-spacing="2">МиГ</text>
-    <line x1="58" y1="98" x2="122" y2="98" stroke="#d4af37" stroke-width="3"/>
-    <text x="90" y="140" font-family="Georgia,serif" font-size="42"
-      fill="#d4af37" text-anchor="middle">%</text>
-  </svg></div><div class="n">8 · Монограмма</div><div class="d">Маша и Глеб</div>
-  <div class="small"><svg viewBox="0 0 180 180">
-    <rect width="180" height="180" fill="#1a1a1c"/>
-    <text x="90" y="82" font-family="-apple-system,Helvetica,Arial" font-size="34"
-      font-weight="800" fill="#f5f5f0" text-anchor="middle" letter-spacing="2">МиГ</text>
-    <line x1="58" y1="98" x2="122" y2="98" stroke="#d4af37" stroke-width="3"/>
-    <text x="90" y="140" font-family="Georgia,serif" font-size="42" fill="#d4af37" text-anchor="middle">%</text>
-  </svg></div><div class="lbl">реальный размер</div></div>
+  <div class="card"><div class="ic"><svg viewBox="0 0 180 180" id="s8">
+    <rect width="180" height="180" fill="#e4e7ec"/>
+    <rect x="26" y="46" width="128" height="42" rx="9" fill="#fff"/>
+    <rect x="26" y="94" width="128" height="42" rx="9" fill="#1a1a1c"/>
+    <text x="42" y="76" font-family="Georgia,serif" font-size="26" fill="#c2185b">%</text>
+    <text x="42" y="124" font-family="Georgia,serif" font-size="26" fill="#a8c8f0">%</text>
+  </svg></div><div class="n">8 · Две строки</div><div class="d">Как строки в таблице</div>
+  <div class="small"><svg viewBox="0 0 180 180"><use href="#s8"/></svg></div><div class="lbl">размер</div></div>
 
 </div>
 
-<h2>Фото + падающий паттерн</h2>
+<h2>Необычные</h2>
 <div class="grid">
 
-  <div class="card"><div class="ic"><svg viewBox="0 0 180 180">
-    <defs>
-      <clipPath id="ph1"><rect width="180" height="180"/></clipPath>
-      <pattern id="rain1" width="45" height="60" patternUnits="userSpaceOnUse">
-        <text x="10" y="20" font-family="Georgia,serif" font-size="19" fill="#fff" opacity=".5">%</text>
-        <text x="30" y="48" font-family="Georgia,serif" font-size="14" fill="#fff" opacity=".34">%</text>
-      </pattern>
-    </defs>
-    <g clip-path="url(#ph1)">
-      <image href="photo.jpg" width="180" height="180" preserveAspectRatio="xMidYMid slice"/>
-      <rect width="180" height="180" fill="url(#rain1)"/>
-    </g>
-  </svg></div><div class="n">9 · Дождь из процентов</div><div class="d">Мелко, поверх всего кадра</div>
-  <div class="small"><svg viewBox="0 0 180 180">
-    <g clip-path="url(#ph1)">
-      <image href="photo.jpg" width="180" height="180" preserveAspectRatio="xMidYMid slice"/>
-      <rect width="180" height="180" fill="url(#rain1)"/>
-    </g>
-  </svg></div><div class="lbl">реальный размер</div></div>
+  <div class="card"><div class="ic"><svg viewBox="0 0 180 180" id="s9">
+    <rect width="180" height="180" fill="#f2c8d8"/>
+    <circle cx="90" cy="90" r="54" fill="#fff"/>
+    <text x="90" y="112" font-family="Georgia,serif" font-size="58" fill="#c2185b" text-anchor="middle">%</text>
+  </svg></div><div class="n">9 · Кружок</div><div class="d">Мягко, читается издалека</div>
+  <div class="small"><svg viewBox="0 0 180 180"><use href="#s9"/></svg></div><div class="lbl">размер</div></div>
 
-  <div class="card"><div class="ic"><svg viewBox="0 0 180 180">
-    <defs>
-      <clipPath id="ph2"><rect width="180" height="180"/></clipPath>
-      <linearGradient id="fade2" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#000" stop-opacity=".55"/>
-        <stop offset=".42" stop-color="#000" stop-opacity="0"/>
-        <stop offset=".72" stop-color="#000" stop-opacity="0"/>
-        <stop offset="1" stop-color="#000" stop-opacity=".62"/></linearGradient>
-    </defs>
-    <g clip-path="url(#ph2)">
-      <image href="photo.jpg" width="180" height="180" preserveAspectRatio="xMidYMid slice"/>
-      <rect width="180" height="180" fill="url(#fade2)"/>
-      <g font-family="Georgia,serif" fill="#fff">
-        <text x="16" y="30" font-size="17" opacity=".72">%</text>
-        <text x="52" y="20" font-size="12" opacity=".5">%</text>
-        <text x="88" y="34" font-size="15" opacity=".6">%</text>
-        <text x="126" y="22" font-size="11" opacity=".45">%</text>
-        <text x="156" y="36" font-size="16" opacity=".66">%</text>
-        <text x="22" y="164" font-size="13" opacity=".55">%</text>
-        <text x="64" y="172" font-size="16" opacity=".64">%</text>
-        <text x="112" y="166" font-size="12" opacity=".5">%</text>
-        <text x="150" y="174" font-size="15" opacity=".6">%</text>
-      </g>
-    </g>
-  </svg></div><div class="n">10 · Паттерн по краям</div><div class="d">Лица чистые, проценты сверху и снизу</div>
-  <div class="small"><svg viewBox="0 0 180 180">
-    <g clip-path="url(#ph2)">
-      <image href="photo.jpg" width="180" height="180" preserveAspectRatio="xMidYMid slice"/>
-      <rect width="180" height="180" fill="url(#fade2)"/>
-      <g font-family="Georgia,serif" fill="#fff">
-        <text x="16" y="30" font-size="17" opacity=".72">%</text>
-        <text x="52" y="20" font-size="12" opacity=".5">%</text>
-        <text x="88" y="34" font-size="15" opacity=".6">%</text>
-        <text x="126" y="22" font-size="11" opacity=".45">%</text>
-        <text x="156" y="36" font-size="16" opacity=".66">%</text>
-        <text x="22" y="164" font-size="13" opacity=".55">%</text>
-        <text x="64" y="172" font-size="16" opacity=".64">%</text>
-        <text x="112" y="166" font-size="12" opacity=".5">%</text>
-        <text x="150" y="174" font-size="15" opacity=".6">%</text>
-      </g>
-    </g>
-  </svg></div><div class="lbl">реальный размер</div></div>
+  <div class="card"><div class="ic"><svg viewBox="0 0 180 180" id="s10">
+    <rect width="180" height="180" fill="#fff"/>
+    <path d="M0 108 Q45 84 90 108 T180 108 L180 180 L0 180Z" fill="#f2c8d8"/>
+    <path d="M0 128 Q45 106 90 128 T180 128 L180 180 L0 180Z" fill="#a8c8f0" opacity=".85"/>
+    <text x="90" y="82" font-family="Georgia,serif" font-size="62" fill="#1a1a1c" text-anchor="middle">%</text>
+  </svg></div><div class="n">10 · Волны</div><div class="d">Процент над цветными волнами</div>
+  <div class="small"><svg viewBox="0 0 180 180"><use href="#s10"/></svg></div><div class="lbl">размер</div></div>
 
-  <div class="card"><div class="ic"><svg viewBox="0 0 180 180">
-    <defs>
-      <clipPath id="ph3"><rect width="180" height="180"/></clipPath>
-      <pattern id="rub3" width="52" height="52" patternUnits="userSpaceOnUse"
-        patternTransform="rotate(18)">
-        <text x="8" y="24" font-family="Georgia,serif" font-size="17" fill="#ffe9a8" opacity=".48">₽</text>
-      </pattern>
-    </defs>
-    <g clip-path="url(#ph3)">
-      <image href="photo.jpg" width="180" height="180" preserveAspectRatio="xMidYMid slice"/>
-      <rect width="180" height="180" fill="url(#rub3)"/>
-    </g>
-  </svg></div><div class="n">11 · Дождь из рублей</div><div class="d">Тёплый оттенок, под наклоном</div>
-  <div class="small"><svg viewBox="0 0 180 180">
-    <g clip-path="url(#ph3)">
-      <image href="photo.jpg" width="180" height="180" preserveAspectRatio="xMidYMid slice"/>
-      <rect width="180" height="180" fill="url(#rub3)"/>
-    </g>
-  </svg></div><div class="lbl">реальный размер</div></div>
+  <div class="card"><div class="ic"><svg viewBox="0 0 180 180" id="s11">
+    <rect width="180" height="180" fill="#1a1a1c"/>
+    <circle cx="90" cy="90" r="40" fill="none" stroke="#f2c8d8" stroke-width="13"/>
+    <path d="M90 50 A40 40 0 0 1 125 110" fill="none" stroke="#a8c8f0" stroke-width="13" stroke-linecap="round"/>
+    <path d="M90 50 A40 40 0 0 0 55 110" fill="none" stroke="#ffd93d" stroke-width="13" stroke-linecap="round"/>
+  </svg></div><div class="n">11 · Три дуги</div><div class="d">Без текста, чистая графика</div>
+  <div class="small"><svg viewBox="0 0 180 180"><use href="#s11"/></svg></div><div class="lbl">размер</div></div>
 
-  <div class="card"><div class="ic"><svg viewBox="0 0 180 180">
-    <defs>
-      <clipPath id="ph4"><rect width="180" height="180"/></clipPath>
-      <radialGradient id="vig4" cx=".5" cy=".42" r=".72">
-        <stop offset=".5" stop-color="#000" stop-opacity="0"/>
-        <stop offset="1" stop-color="#000" stop-opacity=".6"/></radialGradient>
-    </defs>
-    <g clip-path="url(#ph4)">
-      <image href="photo.jpg" width="180" height="180" preserveAspectRatio="xMidYMid slice"/>
-      <rect width="180" height="180" fill="url(#vig4)"/>
-      <g font-family="Georgia,serif" fill="#fff" opacity=".8">
-        <text x="12" y="52" font-size="20">%</text>
-        <text x="150" y="70" font-size="16">%</text>
-        <text x="8" y="120" font-size="14">%</text>
-        <text x="158" y="132" font-size="19">%</text>
-        <text x="20" y="168" font-size="16">%</text>
-        <text x="140" y="172" font-size="13">%</text>
-      </g>
-    </g>
-  </svg></div><div class="n">12 · Виньетка</div><div class="d">Затемнение по углам, % по периметру</div>
-  <div class="small"><svg viewBox="0 0 180 180">
-    <g clip-path="url(#ph4)">
-      <image href="photo.jpg" width="180" height="180" preserveAspectRatio="xMidYMid slice"/>
-      <rect width="180" height="180" fill="url(#vig4)"/>
-      <g font-family="Georgia,serif" fill="#fff" opacity=".8">
-        <text x="12" y="52" font-size="20">%</text>
-        <text x="150" y="70" font-size="16">%</text>
-        <text x="8" y="120" font-size="14">%</text>
-        <text x="158" y="132" font-size="19">%</text>
-        <text x="20" y="168" font-size="16">%</text>
-        <text x="140" y="172" font-size="13">%</text>
-      </g>
-    </g>
-  </svg></div><div class="lbl">реальный размер</div></div>
+  <div class="card"><div class="ic"><svg viewBox="0 0 180 180" id="s12">
+    <rect width="180" height="180" fill="#f6f4ef"/>
+    <text x="90" y="128" font-family="Georgia,serif" font-size="132"
+      fill="#1a1a1c" text-anchor="middle">%</text>
+    <circle cx="52" cy="60" r="15" fill="#f2c8d8" opacity=".92"/>
+    <circle cx="130" cy="122" r="15" fill="#a8c8f0" opacity=".92"/>
+  </svg></div><div class="n">12 · Процент с кружками</div><div class="d">Кружки вместо точек знака</div>
+  <div class="small"><svg viewBox="0 0 180 180"><use href="#s12"/></svg></div><div class="lbl">размер</div></div>
 
-  <div class="card"><div class="ic"><svg viewBox="0 0 180 180">
-    <defs><clipPath id="ph5"><rect width="180" height="180"/></clipPath></defs>
-    <g clip-path="url(#ph5)">
-      <image href="photo.jpg" width="180" height="180" preserveAspectRatio="xMidYMid slice"/>
-      <g fill="#fff" opacity=".92">
-        <circle cx="24" cy="26" r="9"/><circle cx="60" cy="16" r="6"/>
-        <circle cx="156" cy="30" r="8"/><circle cx="122" cy="18" r="5"/>
-        <circle cx="14" cy="150" r="7"/><circle cx="52" cy="168" r="9"/>
-        <circle cx="164" cy="156" r="6"/><circle cx="126" cy="170" r="8"/>
-      </g>
-      <g font-family="Georgia,serif" font-size="11" fill="#111" text-anchor="middle">
-        <text x="24" y="30">%</text><text x="156" y="34">%</text>
-        <text x="52" y="172">%</text><text x="126" y="174">%</text>
-      </g>
-    </g>
-  </svg></div><div class="n">13 · Монетки</div><div class="d">Белые кружки с % по углам</div>
-  <div class="small"><svg viewBox="0 0 180 180">
-    <g clip-path="url(#ph5)">
-      <image href="photo.jpg" width="180" height="180" preserveAspectRatio="xMidYMid slice"/>
-      <g fill="#fff" opacity=".92">
-        <circle cx="24" cy="26" r="9"/><circle cx="60" cy="16" r="6"/>
-        <circle cx="156" cy="30" r="8"/><circle cx="122" cy="18" r="5"/>
-        <circle cx="14" cy="150" r="7"/><circle cx="52" cy="168" r="9"/>
-        <circle cx="164" cy="156" r="6"/><circle cx="126" cy="170" r="8"/>
-      </g>
-    </g>
-  </svg></div><div class="lbl">реальный размер</div></div>
+  <div class="card"><div class="ic"><svg viewBox="0 0 180 180" id="s13">
+    <rect width="180" height="180" fill="#2b1e3d"/>
+    <rect x="32" y="58" width="116" height="72" rx="12" fill="none" stroke="#e9d5ff" stroke-width="5"/>
+    <rect x="32" y="78" width="116" height="12" fill="#e9d5ff"/>
+    <circle cx="52" cy="112" r="7" fill="#e9d5ff" opacity=".7"/>
+    <circle cx="70" cy="112" r="7" fill="#e9d5ff" opacity=".4"/>
+    <text x="126" y="120" font-family="Georgia,serif" font-size="30" fill="#e9d5ff" text-anchor="middle">%</text>
+  </svg></div><div class="n">13 · Сливовая</div><div class="d">Контур на глубоком фиолетовом</div>
+  <div class="small"><svg viewBox="0 0 180 180"><use href="#s13"/></svg></div><div class="lbl">размер</div></div>
 
-  <div class="card"><div class="ic"><svg viewBox="0 0 180 180">
-    <defs>
-      <clipPath id="ph6"><rect width="180" height="180"/></clipPath>
-      <linearGradient id="top6" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#000" stop-opacity=".7"/>
-        <stop offset=".3" stop-color="#000" stop-opacity="0"/></linearGradient>
-    </defs>
-    <g clip-path="url(#ph6)">
-      <image href="photo.jpg" width="180" height="180" preserveAspectRatio="xMidYMid slice"/>
-      <rect width="180" height="180" fill="url(#top6)"/>
-      <text x="90" y="36" font-family="Georgia,serif" font-size="30"
-        fill="#fff" text-anchor="middle" letter-spacing="6">% % %</text>
-    </g>
-  </svg></div><div class="n">14 · Строка сверху</div><div class="d">Три процента над головами</div>
-  <div class="small"><svg viewBox="0 0 180 180">
-    <g clip-path="url(#ph6)">
-      <image href="photo.jpg" width="180" height="180" preserveAspectRatio="xMidYMid slice"/>
-      <rect width="180" height="180" fill="url(#top6)"/>
-      <text x="90" y="36" font-family="Georgia,serif" font-size="30"
-        fill="#fff" text-anchor="middle" letter-spacing="6">% % %</text>
-    </g>
-  </svg></div><div class="lbl">реальный размер</div></div>
+  <div class="card"><div class="ic"><svg viewBox="0 0 180 180" id="s14">
+    <defs><linearGradient id="gr14" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbc2eb"/><stop offset="1" stop-color="#a6c1ee"/></linearGradient></defs>
+    <rect width="180" height="180" fill="url(#gr14)"/>
+    <rect x="36" y="62" width="108" height="66" rx="11" fill="#ffffff" opacity=".92"/>
+    <text x="90" y="112" font-family="Georgia,serif" font-size="40" fill="#5b4b8a" text-anchor="middle">%</text>
+  </svg></div><div class="n">14 · Градиент</div><div class="d">Розовый в голубой, карта поверх</div>
+  <div class="small"><svg viewBox="0 0 180 180"><use href="#s14"/></svg></div><div class="lbl">размер</div></div>
+
+  <div class="card"><div class="ic"><svg viewBox="0 0 180 180" id="s15">
+    <rect width="180" height="180" fill="#fff"/>
+    <rect x="0" y="0" width="180" height="90" fill="#f2c8d8"/>
+    <rect x="0" y="90" width="180" height="90" fill="#a8c8f0"/>
+    <circle cx="90" cy="90" r="42" fill="#fff"/>
+    <text x="90" y="110" font-family="Georgia,serif" font-size="46" fill="#1a1a1c" text-anchor="middle">%</text>
+  </svg></div><div class="n">15 · Пополам</div><div class="d">Два цвета, круг по центру</div>
+  <div class="small"><svg viewBox="0 0 180 180"><use href="#s15"/></svg></div><div class="lbl">размер</div></div>
 
 </div>
 
