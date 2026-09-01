@@ -183,7 +183,11 @@ const DATA = {
       gleb: [
         {n:"zolla", p:20, note:"от 5 000 ₽, до 2 000 ₽"},
         {n:"Яндекс Лавка", p:20, note:"по карте МИР, до 550 ₽"},
-        {n:"Авито Путешествия", p:15, note:"до 2 000 ₽"}
+        {n:"Авито Путешествия", p:15, note:"до 2 000 ₽"},
+        {n:"Яндекс Такси", p:10, note:"до 30 октября"},
+        {n:"Яндекс Лавка", p:5, note:"до 30 октября"},
+        {n:"Яндекс Маркет", p:5, note:"до 30 октября"},
+        {n:"Яндекс Еда", p:5, note:"до 30 октября"}
       ],
       masha: [
         {n:"Яндекс Лавка", p:20, note:"по карте МИР, до 550 ₽"},
@@ -234,7 +238,8 @@ const DATA = {
         {n:"Яндекс Лавка", p:20, who:"gleb", bank:"vtb", note:"по карте МИР, до 550 ₽"},
         {n:"ВкусВилл", p:15, who:"masha", bank:"alfa", note:"от 2 000 ₽"},
         {n:"Перекрёсток Доставка", p:10, who:"gleb", bank:"ozon"},
-        {n:"Магнит", p:10, who:"gleb", bank:"yandex"}
+        {n:"Магнит", p:10, who:"gleb", bank:"yandex"},
+        {n:"Яндекс Лавка", p:5, who:"gleb", bank:"vtb", note:"до 30 октября"}
       ]},
       { t:"Одежда", items:[
         {n:"zolla", p:20, who:"gleb", bank:"vtb", note:"от 5 000 ₽, до 2 000 ₽"},
@@ -246,7 +251,11 @@ const DATA = {
         {n:"ЛЭТУАЛЬ", p:25, who:"gleb", bank:"yandex", season:true}
       ]},
       { t:"Еда", items:[
-        {n:"Бургер Кинг", p:25, who:"masha", bank:"yandex", season:true}
+        {n:"Бургер Кинг", p:25, who:"masha", bank:"yandex", season:true},
+        {n:"Яндекс Еда", p:5, who:"gleb", bank:"vtb", note:"до 30 октября"}
+      ]},
+      { t:"Маркетплейсы", items:[
+        {n:"Яндекс Маркет", p:5, who:"gleb", bank:"vtb", note:"до 30 октября"}
       ]},
       { t:"Путешествия", items:[
         {n:"Авито Путешествия", p:15, who:"masha", bank:"vtb", note:"до 2 000 ₽"},
@@ -284,6 +293,7 @@ const DATA = {
       { t:"Поездки", items:[
         {n:"Яндекс Такси", p:10, who:"masha", bank:"yandex", season:true},
         {n:"Яндекс Такси", p:10, who:"gleb", bank:"yandex", season:true},
+        {n:"Яндекс Такси", p:10, who:"gleb", bank:"vtb", note:"до 30 октября"},
         {n:"Транспорт", p:7, who:"masha", bank:"ozon"},
         {n:"Ж/д билеты", p:5, who:"gleb", bank:"tinkoff"}
       ]},
