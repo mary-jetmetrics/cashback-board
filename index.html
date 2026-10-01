@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Кэшбэк — сентябрь 2026</title>
+<title>Кэшбэк — октябрь 2026</title>
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <meta name="apple-mobile-web-app-title" content="Кэшбэк">
@@ -50,12 +50,19 @@ h1{font-size:18px;font-weight:800;letter-spacing:-.4px}
 
 /* ---- вкладка 1: сетка по банкам ---- */
 .grid-scroll{overflow-x:auto;padding-bottom:6px}
-.grid{display:grid;grid-template-columns:repeat(6,minmax(180px,1fr));gap:8px;min-width:1100px}
+.grid{display:grid;grid-template-columns:repeat(6,minmax(180px,1fr));column-gap:8px;row-gap:0;min-width:1100px}
 .bhead{padding:8px 11px;border-radius:8px 8px 0 0;font-size:11.5px;font-weight:800;
   text-transform:uppercase;letter-spacing:.6px}
 .blimit{font-size:9.5px;font-weight:500;opacity:.75;text-transform:none;letter-spacing:0}
+/* шапка над каждым человеком: банк слева, цифры его карт справа — так же легко, как лимит */
+.bhead{display:flex;flex-direction:column;gap:1px}
+.bh1,.bh2{display:flex;justify-content:space-between;align-items:baseline;gap:8px;min-width:0}
+.bnums{font-size:10px;font-weight:600;opacity:.8;text-transform:none;letter-spacing:.2px;
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.bh2 .bnums{font-size:9.5px;font-weight:500;opacity:.75}
 .rowlabel{grid-column:1/-1;font-size:11px;font-weight:800;text-transform:uppercase;
-  letter-spacing:1.1px;color:var(--mute);margin:13px 0 2px;padding-left:2px}
+  letter-spacing:1.1px;color:var(--mute);margin:16px 0 6px;padding-left:2px}
+.rowlabel:first-child{margin-top:0}
 .cell{background:var(--card);border-radius:0 0 8px 8px;padding:7px;min-height:52px}
 .ci{display:flex;gap:7px;align-items:baseline;padding:5px 6px;border-radius:5px;
   margin-bottom:2px;font-size:12.5px;background:var(--on);font-weight:600}
@@ -105,16 +112,28 @@ h1{font-size:18px;font-weight:800;letter-spacing:-.4px}
 .legend{font-size:11px;color:var(--mute);margin-bottom:12px;display:flex;gap:14px;flex-wrap:wrap}
 .legend b{color:var(--ink)}
 .empty{text-align:center;padding:26px;color:var(--mute);font-size:13px}
+
+/* ---- вкладка 3: карты плашками ---- */
+.ksec{margin-bottom:18px}
+.ksec h2{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.1px;color:var(--mute);margin-bottom:7px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.tile{border-radius:9px;padding:9px 11px 10px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.tile .tn{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.6px}
+.tile .tnum{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:16px;font-weight:700;
+  font-variant-numeric:tabular-nums;letter-spacing:.3px;line-height:1.3}
+.tile .tnum small{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:10px;
+  font-weight:600;opacity:.75;margin-left:4px;letter-spacing:0}
 </style>
 </head>
 <body>
 
 <header>
   <div class="wrap">
-    <h1>Кэшбэк — сентябрь 2026</h1>
+    <h1>Кэшбэк — октябрь 2026</h1>
     <div class="tabs">
       <button class="tab act" data-i="1">По банкам</button>
       <button class="tab" data-i="2">По категориям</button>
+      <button class="tab" data-i="3">Карты</button>
     </div>
   </div>
 </header>
@@ -122,11 +141,25 @@ h1{font-size:18px;font-weight:800;letter-spacing:-.4px}
 <div class="wrap">
   <div class="pane act" id="p1"></div>
   <div class="pane" id="p2"></div>
+  <div class="pane" id="p3"></div>
 </div>
 
 <script>
+// ПОСЛЕДНИЕ 4 ЦИФРЫ КАРТ — не меняются от месяца к месяцу, при синке DATA этот блок не трогать.
+// Несколько карт к одному счёту — через слэш: "1234 / 5678". Карта к другому счёту — в extra с пометкой
+const CARDS = {
+  yandex:  { masha:"2365", gleb:"4051" },
+  tinkoff: { masha:"3663 / 1395 / 7856",   // все три к одному счёту
+             gleb:"0549",
+             extra:[ {who:"masha", digits:"7266", note:"ALL Airlines — кредитный счёт Глеба"},   // 7266 и 5030 — один счёт
+                     {who:"gleb",  digits:"5030", note:"ALL Airlines — кредитный счёт Глеба"} ] },
+  alfa:    { masha:"6998", gleb:"1121" },
+  vtb:     { masha:"7591 / 6383", gleb:"7563 / 5783" },   // у Глеба обе карты МИР
+  ozon:    { masha:"2655", gleb:"6038" },
+  sber:    { masha:"8370 / 9415 вирт.", gleb:"7612" }
+};
 const DATA = {
-  month: "Сентябрь 2026",
+  month: "Октябрь 2026",
   // приоритет банков при равном % — чем меньше индекс, тем раньше платить
   order: ["yandex","tinkoff","alfa","vtb","ozon","sber"],
   banks: [
@@ -140,206 +173,193 @@ const DATA = {
   cats: {
     tinkoff: {
       gleb: [
-        {n:"Аптеки", p:7},
-        {n:"Ж/д билеты", p:5},
+        {n:"Аптеки", p:5},
+        {n:"Развлечения", p:5},
         {n:"Супермаркеты", p:3},
         {n:"Все покупки", p:1}
       ],
       masha: [
-        {n:"Супермаркеты в Городе", p:12},
-        {n:"Аптеки", p:5},
-        {n:"Развлечения", p:5},
+        {n:"Шопинг в Городе", p:20},
+        {n:"Супермаркеты в Городе", p:17},
+        {n:"Ж/д билеты", p:5},
         {n:"Все покупки", p:1}
       ]
     },
     alfa: {
       gleb: [
-        {n:"Автозапчасти", p:5},
-        {n:"Животные", p:5},
-        {n:"Продукты", p:1}
+        {n:"АШАН онлайн", p:15, note:"от 4 500 ₽"},
+        {n:"Цифровые товары", p:5},
+        {n:"Автозапчасти", p:5}
       ],
       masha: [
-        {n:"ВкусВилл", p:15, note:"от 2 000 ₽"},
-        {n:"Lamoda", p:7, note:"от 5 000 ₽"},
-        {n:"Развлечения", p:5}
+        {n:"АШАН онлайн", p:15, note:"от 4 500 ₽"},
+        {n:"Еаптека", p:12},
+        {n:"Активный отдых", p:5}
       ]
     },
     ozon: {
       gleb: [
         {n:"Перекрёсток Доставка", p:10},
-        {n:"Все покупки", p:5, note:"до 22 сентября"},
-        {n:"Медицинские клиники", p:5, note:"лимит 1 500 ₽"},
-        {n:"Отели", p:5},
-        {n:"Салоны красоты и СПА", p:5}
+        {n:"Рестораны", p:5},
+        {n:"Топливо и АЗС", p:5},
+        {n:"Фастфуд", p:5},
+        {n:"Все покупки", p:1}
       ],
       masha: [
-        {n:"Транспорт", p:7},
-        {n:"Одежда и обувь", p:5},
-        {n:"Электроника и бытовая техника", p:5},
-        {n:"Дом и ремонт", p:3}
+        {n:"МЕДСИ", p:10},
+        {n:"Аптеки", p:5},
+        {n:"Дом и ремонт", p:5},
+        {n:"Такси", p:5},
+        {n:"Все покупки", p:1}
       ]
     },
     vtb: {
       gleb: [
-        {n:"zolla", p:20, note:"от 5 000 ₽, до 2 000 ₽"},
         {n:"Яндекс Лавка", p:20, note:"по карте МИР, до 550 ₽"},
-        {n:"Авито Путешествия", p:15, note:"до 2 000 ₽"},
+        {n:"РИВ ГОШ", p:10, note:"до 1 000 ₽"},
         {n:"Яндекс Такси", p:10, note:"до 30 октября"},
         {n:"Яндекс Лавка", p:5, note:"до 30 октября"},
         {n:"Яндекс Маркет", p:5, note:"до 30 октября"},
-        {n:"Яндекс Еда", p:5, note:"до 30 октября"}
+        {n:"Яндекс Еда", p:5, note:"до 30 октября"},
+        {n:"Электроника", p:3, note:"до 1 000 ₽"}
       ],
       masha: [
-        {n:"Яндекс Лавка", p:20, note:"по карте МИР, до 550 ₽"},
-        {n:"Авито Путешествия", p:15, note:"до 2 000 ₽"},
+        {n:"Монетка", p:15, note:"в приложении или на сайте, от 1 300 ₽, до 800 ₽"},
+        {n:"РИВ ГОШ", p:10, note:"до 1 000 ₽"},
         {n:"Wildberries", p:3, note:"до 500 ₽"}
       ]
     },
     sber: {
       gleb: [
-        {n:"Штрафы ГИБДД", p:10},
-        {n:"Фастфуд", p:3},
-        {n:"АЗС", p:3}
+        {n:"Парфюмерия и косметика", p:5},
+        {n:"Салоны красоты", p:5},
+        {n:"На все покупки", p:0.5}
       ],
       masha: [
         {n:"Парфюмерия и косметика", p:5},
-        {n:"Кино и театр", p:3},
-        {n:"На все покупки", p:0.5}
+        {n:"Салоны красоты", p:5},
+        {n:"Транспорт", p:4}
       ]
     },
     yandex: {
       gleb: [
-        {n:"Магнит", p:10},
-        {n:"Цветы", p:10},
-        {n:"Супермаркеты", p:3},
+        {n:"Супермаркеты", p:5},
+        {n:"Одежда и обувь", p:5},
+        {n:"Яндекс Такси", p:5, note:"Комфорт, Комфорт+, Ultima"},
+        {n:"Кафе, бары и рестораны", p:3},
         {n:"Все покупки", p:1}
       ],
       masha: [
-        {n:"Книги", p:10},
-        {n:"Питомцы", p:10},
-        {n:"Электроника", p:10},
-        {n:"Кафе, бары и рестораны", p:5},
-        {n:"Все покупки на кассе", p:3}
+        {n:"Одежда и обувь", p:5},
+        {n:"Кафе, бары и рестораны", p:3},
+        {n:"Супермаркеты", p:3},
+        {n:"Яндекс Лавка", p:2},
+        {n:"Все покупки", p:1}
       ]
     }
   },
-  seasonal: [
-    {n:"ЛЭТУАЛЬ", p:25, who:"both"},
-    {n:"Бургер Кинг", p:25, who:"masha"},
-    {n:"Яндекс Такси", p:10, who:"both"},
-    {n:"Одежда и обувь", p:7, who:"both"}
-  ],
+  // в октябре сезонных за уровни Своих Плюсов нет
+  seasonal: [],
 
   // ГРУППЫ. shops:true — конкретные магазины/сервисы (наценка, доставка, только онлайн)
   groups: [
     { t:"Конкретные магазины и сервисы", icon:"🏪", shops:true, last:true, subs:[
       { t:"Продукты", items:[
-        {n:"Яндекс Лавка", p:20, who:"masha", bank:"vtb", note:"по карте МИР, до 550 ₽"},
         {n:"Яндекс Лавка", p:20, who:"gleb", bank:"vtb", note:"по карте МИР, до 550 ₽"},
-        {n:"ВкусВилл", p:15, who:"masha", bank:"alfa", note:"от 2 000 ₽"},
+        {n:"АШАН онлайн", p:15, who:"masha", bank:"alfa", note:"от 4 500 ₽"},
+        {n:"АШАН онлайн", p:15, who:"gleb", bank:"alfa", note:"от 4 500 ₽"},
+        {n:"Монетка", p:15, who:"masha", bank:"vtb", note:"в приложении или на сайте, от 1 300 ₽, до 800 ₽"},
         {n:"Перекрёсток Доставка", p:10, who:"gleb", bank:"ozon"},
-        {n:"Магнит", p:10, who:"gleb", bank:"yandex"},
-        {n:"Яндекс Лавка", p:5, who:"gleb", bank:"vtb", note:"до 30 октября"}
+        {n:"Яндекс Лавка", p:5, who:"gleb", bank:"vtb", note:"до 30 октября"},
+        {n:"Яндекс Лавка", p:2, who:"masha", bank:"yandex"}
       ]},
-      { t:"Одежда", items:[
-        {n:"zolla", p:20, who:"gleb", bank:"vtb", note:"от 5 000 ₽, до 2 000 ₽"},
-        {n:"Lamoda", p:7, who:"masha", bank:"alfa", note:"от 5 000 ₽"},
-        {n:"Wildberries", p:3, who:"masha", bank:"vtb", note:"до 500 ₽"}
+      { t:"Здоровье", items:[
+        {n:"Еаптека", p:12, who:"masha", bank:"alfa"},
+        {n:"МЕДСИ", p:10, who:"masha", bank:"ozon"}
       ]},
       { t:"Косметика", items:[
-        {n:"ЛЭТУАЛЬ", p:25, who:"masha", bank:"yandex", season:true},
-        {n:"ЛЭТУАЛЬ", p:25, who:"gleb", bank:"yandex", season:true}
-      ]},
-      { t:"Еда", items:[
-        {n:"Бургер Кинг", p:25, who:"masha", bank:"yandex", season:true},
-        {n:"Яндекс Еда", p:5, who:"gleb", bank:"vtb", note:"до 30 октября"}
+        {n:"РИВ ГОШ", p:10, who:"masha", bank:"vtb", note:"до 1 000 ₽"},
+        {n:"РИВ ГОШ", p:10, who:"gleb", bank:"vtb", note:"до 1 000 ₽"}
       ]},
       { t:"Маркетплейсы", items:[
-        {n:"Яндекс Маркет", p:5, who:"gleb", bank:"vtb", note:"до 30 октября"}
+        {n:"Яндекс Маркет", p:5, who:"gleb", bank:"vtb", note:"до 30 октября"},
+        {n:"Wildberries", p:3, who:"masha", bank:"vtb", note:"до 500 ₽"}
       ]},
-      { t:"Путешествия", items:[
-        {n:"Авито Путешествия", p:15, who:"masha", bank:"vtb", note:"до 2 000 ₽"},
-        {n:"Авито Путешествия", p:15, who:"gleb", bank:"vtb", note:"до 2 000 ₽"}
+      { t:"Еда", items:[
+        {n:"Яндекс Еда", p:5, who:"gleb", bank:"vtb", note:"до 30 октября"}
       ]}
     ]},
 
     { t:"Еда и продукты", icon:"🛒", subs:[
       { t:"", items:[
-        {n:"Супермаркеты в Городе", p:12, who:"masha", bank:"tinkoff"},
-        {n:"Кафе, бары и рестораны", p:5, who:"masha", bank:"yandex"},
-        {n:"Супермаркеты", p:3, who:"gleb", bank:"yandex"},
-        {n:"Супермаркеты", p:3, who:"gleb", bank:"tinkoff"},
-        {n:"Фастфуд", p:3, who:"gleb", bank:"sber"},
-        {n:"Продукты", p:1, who:"gleb", bank:"alfa"}
+        {n:"Супермаркеты в Городе", p:17, who:"masha", bank:"tinkoff"},
+        {n:"Супермаркеты", p:5, who:"gleb", bank:"yandex"},
+        {n:"Рестораны", p:5, who:"gleb", bank:"ozon"},
+        {n:"Фастфуд", p:5, who:"gleb", bank:"ozon"},
+        {n:"Кафе, бары и рестораны", p:3, who:"masha", bank:"yandex"},
+        {n:"Кафе, бары и рестораны", p:3, who:"gleb", bank:"yandex"},
+        {n:"Супермаркеты", p:3, who:"masha", bank:"yandex"},
+        {n:"Супермаркеты", p:3, who:"gleb", bank:"tinkoff"}
       ]}
     ]},
 
     { t:"Красота", icon:"💄", subs:[
       { t:"", items:[
         {n:"Парфюмерия и косметика", p:5, who:"masha", bank:"sber"},
-        {n:"Салоны красоты и СПА", p:5, who:"gleb", bank:"ozon"}
+        {n:"Парфюмерия и косметика", p:5, who:"gleb", bank:"sber"},
+        {n:"Салоны красоты", p:5, who:"masha", bank:"sber"},
+        {n:"Салоны красоты", p:5, who:"gleb", bank:"sber"}
       ]}
     ]},
 
     { t:"Здоровье", icon:"🩺", subs:[
       { t:"", items:[
-        {n:"Аптеки", p:7, who:"gleb", bank:"tinkoff"},
-        {n:"Аптеки", p:5, who:"masha", bank:"tinkoff"},
-        {n:"Медицинские клиники", p:5, who:"gleb", bank:"ozon", note:"лимит 1 500 ₽"}
+        {n:"Аптеки", p:5, who:"gleb", bank:"tinkoff"},
+        {n:"Аптеки", p:5, who:"masha", bank:"ozon"}
       ]}
     ]},
 
     { t:"Транспорт и авто", icon:"🚕", subs:[
-      { t:"Поездки", items:[
-        {n:"Яндекс Такси", p:10, who:"masha", bank:"yandex", season:true},
-        {n:"Яндекс Такси", p:10, who:"gleb", bank:"yandex", season:true},
+      { t:"", items:[
         {n:"Яндекс Такси", p:10, who:"gleb", bank:"vtb", note:"до 30 октября"},
-        {n:"Транспорт", p:7, who:"masha", bank:"ozon"},
-        {n:"Ж/д билеты", p:5, who:"gleb", bank:"tinkoff"}
-      ]},
-      { t:"Авто", items:[
-        {n:"Штрафы ГИБДД", p:10, who:"gleb", bank:"sber"},
+        {n:"Яндекс Такси", p:5, who:"gleb", bank:"yandex", note:"Комфорт, Комфорт+, Ultima"},
+        {n:"Ж/д билеты", p:5, who:"masha", bank:"tinkoff"},
+        {n:"Такси", p:5, who:"masha", bank:"ozon"},
+        {n:"Топливо и АЗС", p:5, who:"gleb", bank:"ozon"},
         {n:"Автозапчасти", p:5, who:"gleb", bank:"alfa"},
-        {n:"АЗС", p:3, who:"gleb", bank:"sber"}
+        {n:"Транспорт", p:4, who:"masha", bank:"sber"}
       ]}
     ]},
 
     { t:"Одежда и обувь", icon:"👗", subs:[
       { t:"", items:[
-        {n:"Одежда и обувь", p:7, who:"masha", bank:"yandex", season:true},
-        {n:"Одежда и обувь", p:7, who:"gleb", bank:"yandex", season:true},
-        {n:"Одежда и обувь", p:5, who:"masha", bank:"ozon"}
+        {n:"Шопинг в Городе", p:20, who:"masha", bank:"tinkoff"},
+        {n:"Одежда и обувь", p:5, who:"masha", bank:"yandex"},
+        {n:"Одежда и обувь", p:5, who:"gleb", bank:"yandex"}
       ]}
     ]},
 
     { t:"Дом и техника", icon:"🔌", subs:[
       { t:"", items:[
-        {n:"Электроника", p:10, who:"masha", bank:"yandex"},
-        {n:"Электроника и бытовая техника", p:5, who:"masha", bank:"ozon"},
-        {n:"Дом и ремонт", p:3, who:"masha", bank:"ozon"}
+        {n:"Дом и ремонт", p:5, who:"masha", bank:"ozon"},
+        {n:"Электроника", p:3, who:"gleb", bank:"vtb", note:"до 1 000 ₽"}
       ]}
     ]},
 
     { t:"Прочее", icon:"📦", subs:[
       { t:"", items:[
-        {n:"Книги", p:10, who:"masha", bank:"yandex"},
-        {n:"Питомцы", p:10, who:"masha", bank:"yandex"},
-        {n:"Цветы", p:10, who:"gleb", bank:"yandex"},
-        {n:"Животные", p:5, who:"gleb", bank:"alfa"},
-        {n:"Отели, тур", p:5, who:"gleb", bank:"ozon"}
-      ]},
-      { t:"Развлечения", items:[
-        {n:"Развлечения", p:5, who:"masha", bank:"tinkoff"},
-        {n:"Развлечения", p:5, who:"masha", bank:"alfa"},
-        {n:"Кино и театр", p:3, who:"masha", bank:"sber"}
+        {n:"Развлечения", p:5, who:"gleb", bank:"tinkoff"},
+        {n:"Активный отдых", p:5, who:"masha", bank:"alfa"},
+        {n:"Цифровые товары", p:5, who:"gleb", bank:"alfa"}
       ]},
       { t:"Всё остальное", items:[
-        {n:"Все покупки", p:5, who:"gleb", bank:"ozon", note:"до 22 сентября"},
-        {n:"Все покупки на кассе", p:3, who:"masha", bank:"yandex"},
+        {n:"Все покупки", p:1, who:"masha", bank:"yandex"},
+        {n:"Все покупки", p:1, who:"gleb", bank:"yandex"},
         {n:"Все покупки", p:1, who:"masha", bank:"tinkoff"},
         {n:"Все покупки", p:1, who:"gleb", bank:"tinkoff"},
-        {n:"Все покупки", p:1, who:"gleb", bank:"yandex"},
-        {n:"На все покупки", p:0.5, who:"masha", bank:"sber"}
+        {n:"Все покупки", p:1, who:"masha", bank:"ozon"},
+        {n:"Все покупки", p:1, who:"gleb", bank:"ozon"},
+        {n:"На все покупки", p:0.5, who:"gleb", bank:"sber"}
       ]}
     ]}
   ]
@@ -355,8 +375,15 @@ const cls = (p,c) => { const v = (c && c.pmin!=null) ? c.pmin : p;
   return v>5?'p-hi':(v===5?'p-mid':'p-lo'); };
 const esc = s => String(s).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
 const rank = b => { const i=DATA.order.indexOf(b); return i<0?99:i; };
-// банки в едином порядке приоритета — и в сетке, и в сортировке
-const BANKS = DATA.order.map(id=>bankById(id));
+// порядок столбцов на вкладках «По банкам» и «Карты» — как на доске: Т-Банк первым.
+// Приоритет при равном % (DATA.order, Яндекс первым) от него не зависит.
+const VIEW = ["tinkoff","yandex","alfa","vtb","ozon","sber"];
+const BANKS = VIEW.map(id=>bankById(id));
+// цифры карт из CARDS: "8370 / 9415 вирт." → [{d:"8370"},{d:"9415",tag:"вирт."}]
+const cardsOf = (bank,who) => { const s=(CARDS[bank]||{})[who]; return !s ? [] :
+  s.split('/').map(x=>x.trim()).map(x=>{ const m=x.match(/^(\d{4})\s*(.*)$/); return m?{d:m[1],tag:m[2]}:{d:x,tag:''}; }); };
+const extrasOf = (bank,who) => ((CARDS[bank]||{}).extra||[]).filter(e=>e.who===who);
+const numsText = list => list.map(c=>c.d+(c.tag?' '+c.tag:'')).join(' / ');
 // сортировка: сначала % по убыванию, при равенстве — приоритет банка
 const sortItems = a => a.slice().sort((x,y)=> y.p-x.p || rank(x.bank)-rank(y.bank));
 // одна и та же категория в одном банке с одним % у обоих — схлопываем в строку с меткой «МГ»
@@ -379,9 +406,12 @@ function buildGrid(){
       <span>${esc(c.n)}${c.auto?'<span class="auto-tag">авто</span>':''}
       ${c.note?`<div class="note">${esc(c.note)}</div>`:''}</span></div>`).join('')+`</div>`;
   }).join('');
-  const heads = BANKS.map(b=>
-    `<div class="bhead" style="background:${b.color};color:${b.text}">${b.name}
-      <div class="blimit">${b.limit}</div></div>`).join('');
+  const heads = who => BANKS.map(b=>{
+    const ex = extrasOf(b.id,who);
+    return `<div class="bhead" style="background:${b.color};color:${b.text}">
+      <div class="bh1"><span>${b.name}</span><span class="bnums">${esc(numsText(cardsOf(b.id,who)))}</span></div>
+      <div class="bh2"><span class="blimit">${b.limit}</span>${ex.length?`<span class="bnums">AA ${esc(ex.map(e=>e.digits).join(' / '))}</span>`:''}</div>
+    </div>`; }).join('');
   const sgroup = (label, list) => !list.length ? '' : `<div class="sgroup">
     <div class="sw">${label}</div>
     <div class="sgrid">${list.map(s=>
@@ -393,14 +423,13 @@ function buildGrid(){
   document.getElementById('p1').innerHTML=`
     <input class="search" id="gs" placeholder="Поиск по категориям">
     <div class="grid-scroll"><div class="grid">
-      ${heads}
-      <div class="rowlabel">Глеб</div>${row('gleb')}
-      <div class="rowlabel">Маша</div>${row('masha')}
+      <div class="rowlabel">Глеб</div>${heads('gleb')}${row('gleb')}
+      <div class="rowlabel">Маша</div>${heads('masha')}${row('masha')}
     </div></div>
-    <div class="season-row">
+    ${DATA.seasonal.length?`<div class="season-row">
       <div class="st">Яндекс · сезонные за Свои Плюсы · не суммируются с категориями</div>
       <div class="srow">${season}</div>
-    </div>`;
+    </div>`:''}`;
   document.getElementById('gs').oninput = e=>{
     const q=e.target.value.trim().toLowerCase();
     document.querySelectorAll('#p1 .ci').forEach(el=>
@@ -463,8 +492,19 @@ function buildCats(){
     });
     const old=document.querySelector('#p2 .empty'); if(old)old.remove();
     if(!vis) document.getElementById('cbox').insertAdjacentHTML('afterend',
-      '<div class="empty">Ничего не нашлось. Озон Глеба — 5% на всё до 22 сентября.</div>');
+      '<div class="empty">Ничего не нашлось. На всё — 1% у обоих: Яндекс, Т-Банк или Озон.</div>');
   };
+}
+
+/* ---------- вкладка 3: карты плашками ---------- */
+function buildCards(){
+  document.getElementById('p3').innerHTML = ['gleb','masha'].map(who=>
+    `<div class="ksec"><h2>${PEOPLE[who]}</h2><div class="tiles">${BANKS.map(b=>{
+      const lines = [...cardsOf(b.id,who).map(c=>`${c.d}${c.tag?`<small>${esc(c.tag)}</small>`:''}`),
+                     ...extrasOf(b.id,who).map(e=>`${e.digits}<small>AA</small>`)];
+      return `<div class="tile" style="background:${b.color};color:${b.text}">
+        <div class="tn">${b.name}</div><div class="tnum">${lines.join('<br>')}</div></div>`;
+    }).join('')}</div></div>`).join('');
 }
 
 document.querySelector('.tabs').onclick = e=>{
@@ -475,7 +515,7 @@ document.querySelector('.tabs').onclick = e=>{
   document.getElementById('p'+b.dataset.i).classList.add('act');
 };
 
-buildGrid();buildCats();
+buildGrid();buildCats();buildCards();
 </script>
 </body>
 </html>
