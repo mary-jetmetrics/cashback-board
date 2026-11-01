@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Кэшбэк — октябрь 2026</title>
+<title>Кэшбэк — ноябрь 2026</title>
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <meta name="apple-mobile-web-app-title" content="Кэшбэк">
@@ -131,7 +131,7 @@ h1{font-size:18px;font-weight:800;letter-spacing:-.4px}
 
 <header>
   <div class="wrap">
-    <h1>Кэшбэк — октябрь 2026</h1>
+    <h1>Кэшбэк — ноябрь 2026</h1>
     <svg class="wave" viewBox="0 0 190 8" aria-hidden="true"><path d="M1 4 Q 6 0 11 4 T 21 4 T 31 4 T 41 4 T 51 4 T 61 4 T 71 4 T 81 4 T 91 4 T 101 4 T 111 4 T 121 4 T 131 4 T 141 4 T 151 4 T 161 4 T 171 4 T 181 4"/></svg>
     <div class="tabs">
       <button class="tab act" data-i="1">По банкам</button>
@@ -160,7 +160,7 @@ const CARDS = {
   sber:    { masha:"8370 / 9415 вирт.", gleb:"7612" }
 };
 const DATA = {
-  month: "Октябрь 2026",
+  month: "Ноябрь 2026",
   // приоритет банков при равном % — чем меньше индекс, тем раньше платить
   order: ["yandex","tinkoff","alfa","vtb","ozon","sber"],
   banks: [
@@ -174,193 +174,198 @@ const DATA = {
   cats: {
     tinkoff: {
       gleb: [
-        {n:"Аптеки", p:5},
-        {n:"Развлечения", p:5},
+        {n:"Афиша в Городе", p:24},
+        {n:"Шопинг в Городе", p:15},
         {n:"Супермаркеты", p:3},
         {n:"Все покупки", p:1}
       ],
       masha: [
-        {n:"Шопинг в Городе", p:20},
-        {n:"Супермаркеты в Городе", p:17},
-        {n:"Ж/д билеты", p:5},
+        {n:"Аптеки", p:5},
+        {n:"Местный транспорт", p:5},
+        {n:"Супермаркеты", p:3},
         {n:"Все покупки", p:1}
       ]
     },
     alfa: {
       gleb: [
-        {n:"АШАН онлайн", p:15, note:"от 4 500 ₽"},
-        {n:"Цифровые товары", p:5},
-        {n:"Автозапчасти", p:5}
+        {n:"Активный отдых", p:5},
+        {n:"Транспорт", p:5},
+        {n:"Пятёрочка", p:4, note:"от 1 000 ₽"}
       ],
       masha: [
-        {n:"АШАН онлайн", p:15, note:"от 4 500 ₽"},
-        {n:"Еаптека", p:12},
-        {n:"Активный отдых", p:5}
+        {n:"Здравсити, Ригла", p:8},
+        {n:"Пятёрочка", p:4, note:"от 1 000 ₽"},
+        {n:"Все покупки", p:2}
       ]
     },
     ozon: {
       gleb: [
         {n:"Перекрёсток Доставка", p:10},
-        {n:"Рестораны", p:5},
-        {n:"Топливо и АЗС", p:5},
-        {n:"Фастфуд", p:5},
+        {n:"Дом и ремонт", p:3},
+        {n:"Топливо и АЗС", p:3},
+        {n:"Химчистки", p:3},
         {n:"Все покупки", p:1}
       ],
       masha: [
-        {n:"МЕДСИ", p:10},
-        {n:"Аптеки", p:5},
-        {n:"Дом и ремонт", p:5},
-        {n:"Такси", p:5},
+        {n:"СберЗдоровье Анализы", p:30},
+        {n:"Автоуслуги", p:5},
+        {n:"Книги", p:5},
+        {n:"Электроника и бытовая техника", p:3},
         {n:"Все покупки", p:1}
       ]
     },
     vtb: {
       gleb: [
-        {n:"Яндекс Лавка", p:20, note:"по карте МИР, до 550 ₽"},
+        {n:"Яндекс Лавка", p:15, note:"по карте МИР, до 500 ₽"},
         {n:"РИВ ГОШ", p:10, note:"до 1 000 ₽"},
-        {n:"Яндекс Такси", p:10, note:"до 30 октября"},
-        {n:"Яндекс Лавка", p:5, note:"до 30 октября"},
-        {n:"Яндекс Маркет", p:5, note:"до 30 октября"},
-        {n:"Яндекс Еда", p:5, note:"до 30 октября"},
-        {n:"Электроника", p:3, note:"до 1 000 ₽"}
+        {n:"Яндекс Такси", p:10},
+        {n:"Яндекс Лавка", p:5},
+        {n:"Яндекс Маркет", p:5},
+        {n:"Яндекс Еда", p:5},
+        {n:"Супермаркеты", p:2.5}
       ],
       masha: [
-        {n:"Монетка", p:15, note:"в приложении или на сайте, от 1 300 ₽, до 800 ₽"},
-        {n:"РИВ ГОШ", p:10, note:"до 1 000 ₽"},
-        {n:"Wildberries", p:3, note:"до 500 ₽"}
+        {n:"Магнит", p:20, note:"заказывать в „Живи с ВТБ“, от 2 000 ₽, до 1 000 ₽"},
+        {n:"Чиббис", p:20},
+        {n:"Супермаркеты", p:2.5}
       ]
     },
     sber: {
       gleb: [
-        {n:"Парфюмерия и косметика", p:5},
-        {n:"Салоны красоты", p:5},
-        {n:"На все покупки", p:0.5}
+        {n:"Автоуслуги", p:7},
+        {n:"Транспорт", p:5},
+        {n:"Кино и театр", p:3}
       ],
       masha: [
         {n:"Парфюмерия и косметика", p:5},
-        {n:"Салоны красоты", p:5},
-        {n:"Транспорт", p:4}
+        {n:"Транспорт", p:5},
+        {n:"На все покупки", p:0.5}
       ]
     },
     yandex: {
       gleb: [
-        {n:"Супермаркеты", p:5},
+        {n:"Кафе, бары и рестораны", p:5},
         {n:"Одежда и обувь", p:5},
         {n:"Яндекс Такси", p:5, note:"Комфорт, Комфорт+, Ultima"},
-        {n:"Кафе, бары и рестораны", p:3},
+        {n:"Супермаркеты", p:3},
         {n:"Все покупки", p:1}
       ],
       masha: [
-        {n:"Одежда и обувь", p:5},
-        {n:"Кафе, бары и рестораны", p:3},
-        {n:"Супермаркеты", p:3},
-        {n:"Яндекс Лавка", p:2},
-        {n:"Все покупки", p:1}
+        {n:"Яндекс Такси", p:5, note:"Комфорт, Комфорт+, Ultima"},
+        {n:"Развлечения", p:2},
+        {n:"Спортивные товары", p:2},
+        {n:"Питомцы", p:1},
+        {n:"Цветы", p:1}
       ]
     }
   },
-  // в октябре сезонных за уровни Своих Плюсов нет
+  // в ноябре сезонных за уровни Своих Плюсов нет
   seasonal: [],
 
   // ГРУППЫ. shops:true — конкретные магазины/сервисы (наценка, доставка, только онлайн)
   groups: [
     { t:"Конкретные магазины и сервисы", icon:"🏪", shops:true, last:true, subs:[
       { t:"Продукты", items:[
-        {n:"Яндекс Лавка", p:20, who:"gleb", bank:"vtb", note:"по карте МИР, до 550 ₽"},
-        {n:"АШАН онлайн", p:15, who:"masha", bank:"alfa", note:"от 4 500 ₽"},
-        {n:"АШАН онлайн", p:15, who:"gleb", bank:"alfa", note:"от 4 500 ₽"},
-        {n:"Монетка", p:15, who:"masha", bank:"vtb", note:"в приложении или на сайте, от 1 300 ₽, до 800 ₽"},
+        {n:"Магнит", p:20, who:"masha", bank:"vtb", note:"заказывать в „Живи с ВТБ“, от 2 000 ₽, до 1 000 ₽"},
+        {n:"Яндекс Лавка", p:15, who:"gleb", bank:"vtb", note:"по карте МИР, до 500 ₽"},
         {n:"Перекрёсток Доставка", p:10, who:"gleb", bank:"ozon"},
-        {n:"Яндекс Лавка", p:5, who:"gleb", bank:"vtb", note:"до 30 октября"},
-        {n:"Яндекс Лавка", p:2, who:"masha", bank:"yandex"}
+        {n:"Яндекс Лавка", p:5, who:"gleb", bank:"vtb"},
+        {n:"Пятёрочка", p:4, who:"masha", bank:"alfa", note:"от 1 000 ₽"},
+        {n:"Пятёрочка", p:4, who:"gleb", bank:"alfa", note:"от 1 000 ₽"}
       ]},
       { t:"Здоровье", items:[
-        {n:"Еаптека", p:12, who:"masha", bank:"alfa"},
-        {n:"МЕДСИ", p:10, who:"masha", bank:"ozon"}
+        {n:"СберЗдоровье Анализы", p:30, who:"masha", bank:"ozon"},
+        {n:"Здравсити, Ригла", p:8, who:"masha", bank:"alfa"}
       ]},
       { t:"Косметика", items:[
-        {n:"РИВ ГОШ", p:10, who:"masha", bank:"vtb", note:"до 1 000 ₽"},
         {n:"РИВ ГОШ", p:10, who:"gleb", bank:"vtb", note:"до 1 000 ₽"}
       ]},
       { t:"Маркетплейсы", items:[
-        {n:"Яндекс Маркет", p:5, who:"gleb", bank:"vtb", note:"до 30 октября"},
-        {n:"Wildberries", p:3, who:"masha", bank:"vtb", note:"до 500 ₽"}
+        {n:"Яндекс Маркет", p:5, who:"gleb", bank:"vtb"}
       ]},
       { t:"Еда", items:[
-        {n:"Яндекс Еда", p:5, who:"gleb", bank:"vtb", note:"до 30 октября"}
+        {n:"Чиббис", p:20, who:"masha", bank:"vtb"},
+        {n:"Яндекс Еда", p:5, who:"gleb", bank:"vtb"}
       ]}
     ]},
 
     { t:"Еда и продукты", icon:"🛒", subs:[
       { t:"", items:[
-        {n:"Супермаркеты в Городе", p:17, who:"masha", bank:"tinkoff"},
-        {n:"Супермаркеты", p:5, who:"gleb", bank:"yandex"},
-        {n:"Рестораны", p:5, who:"gleb", bank:"ozon"},
-        {n:"Фастфуд", p:5, who:"gleb", bank:"ozon"},
-        {n:"Кафе, бары и рестораны", p:3, who:"masha", bank:"yandex"},
-        {n:"Кафе, бары и рестораны", p:3, who:"gleb", bank:"yandex"},
-        {n:"Супермаркеты", p:3, who:"masha", bank:"yandex"},
-        {n:"Супермаркеты", p:3, who:"gleb", bank:"tinkoff"}
+        {n:"Кафе, бары и рестораны", p:5, who:"gleb", bank:"yandex"},
+        {n:"Супермаркеты", p:3, who:"gleb", bank:"yandex"},
+        {n:"Супермаркеты", p:3, who:"masha", bank:"tinkoff"},
+        {n:"Супермаркеты", p:3, who:"gleb", bank:"tinkoff"},
+        {n:"Супермаркеты", p:2.5, who:"masha", bank:"vtb"},
+        {n:"Супермаркеты", p:2.5, who:"gleb", bank:"vtb"}
       ]}
     ]},
 
     { t:"Красота", icon:"💄", subs:[
       { t:"", items:[
-        {n:"Парфюмерия и косметика", p:5, who:"masha", bank:"sber"},
-        {n:"Парфюмерия и косметика", p:5, who:"gleb", bank:"sber"},
-        {n:"Салоны красоты", p:5, who:"masha", bank:"sber"},
-        {n:"Салоны красоты", p:5, who:"gleb", bank:"sber"}
+        {n:"Парфюмерия и косметика", p:5, who:"masha", bank:"sber"}
       ]}
     ]},
 
     { t:"Здоровье", icon:"🩺", subs:[
       { t:"", items:[
-        {n:"Аптеки", p:5, who:"gleb", bank:"tinkoff"},
-        {n:"Аптеки", p:5, who:"masha", bank:"ozon"}
+        {n:"Аптеки", p:5, who:"masha", bank:"tinkoff"}
       ]}
     ]},
 
     { t:"Транспорт и авто", icon:"🚕", subs:[
       { t:"", items:[
-        {n:"Яндекс Такси", p:10, who:"gleb", bank:"vtb", note:"до 30 октября"},
+        {n:"Яндекс Такси", p:10, who:"gleb", bank:"vtb"},
+        {n:"Автоуслуги", p:7, who:"gleb", bank:"sber"},
+        {n:"Яндекс Такси", p:5, who:"masha", bank:"yandex", note:"Комфорт, Комфорт+, Ultima"},
         {n:"Яндекс Такси", p:5, who:"gleb", bank:"yandex", note:"Комфорт, Комфорт+, Ultima"},
-        {n:"Ж/д билеты", p:5, who:"masha", bank:"tinkoff"},
-        {n:"Такси", p:5, who:"masha", bank:"ozon"},
-        {n:"Топливо и АЗС", p:5, who:"gleb", bank:"ozon"},
-        {n:"Автозапчасти", p:5, who:"gleb", bank:"alfa"},
-        {n:"Транспорт", p:4, who:"masha", bank:"sber"}
+        {n:"Местный транспорт", p:5, who:"masha", bank:"tinkoff"},
+        {n:"Транспорт", p:5, who:"gleb", bank:"alfa"},
+        {n:"Автоуслуги", p:5, who:"masha", bank:"ozon"},
+        {n:"Транспорт", p:5, who:"masha", bank:"sber"},
+        {n:"Транспорт", p:5, who:"gleb", bank:"sber"},
+        {n:"Топливо и АЗС", p:3, who:"gleb", bank:"ozon"}
       ]}
     ]},
 
     { t:"Одежда и обувь", icon:"👗", subs:[
       { t:"", items:[
-        {n:"Шопинг в Городе", p:20, who:"masha", bank:"tinkoff"},
-        {n:"Одежда и обувь", p:5, who:"masha", bank:"yandex"},
+        {n:"Шопинг в Городе", p:15, who:"gleb", bank:"tinkoff"},
         {n:"Одежда и обувь", p:5, who:"gleb", bank:"yandex"}
       ]}
     ]},
 
     { t:"Дом и техника", icon:"🔌", subs:[
       { t:"", items:[
-        {n:"Дом и ремонт", p:5, who:"masha", bank:"ozon"},
-        {n:"Электроника", p:3, who:"gleb", bank:"vtb", note:"до 1 000 ₽"}
+        {n:"Дом и ремонт", p:3, who:"gleb", bank:"ozon"},
+        {n:"Электроника и бытовая техника", p:3, who:"masha", bank:"ozon"}
+      ]}
+    ]},
+
+    { t:"Досуг и спорт", icon:"🎭", subs:[
+      { t:"", items:[
+        {n:"Афиша в Городе", p:24, who:"gleb", bank:"tinkoff"},
+        {n:"Активный отдых", p:5, who:"gleb", bank:"alfa"},
+        {n:"Кино и театр", p:3, who:"gleb", bank:"sber"},
+        {n:"Развлечения", p:2, who:"masha", bank:"yandex"},
+        {n:"Спортивные товары", p:2, who:"masha", bank:"yandex"}
       ]}
     ]},
 
     { t:"Прочее", icon:"📦", subs:[
       { t:"", items:[
-        {n:"Развлечения", p:5, who:"gleb", bank:"tinkoff"},
-        {n:"Активный отдых", p:5, who:"masha", bank:"alfa"},
-        {n:"Цифровые товары", p:5, who:"gleb", bank:"alfa"}
+        {n:"Книги", p:5, who:"masha", bank:"ozon"},
+        {n:"Химчистки", p:3, who:"gleb", bank:"ozon"},
+        {n:"Питомцы", p:1, who:"masha", bank:"yandex"},
+        {n:"Цветы", p:1, who:"masha", bank:"yandex"}
       ]},
       { t:"Всё остальное", items:[
-        {n:"Все покупки", p:1, who:"masha", bank:"yandex"},
+        {n:"Все покупки", p:2, who:"masha", bank:"alfa"},
         {n:"Все покупки", p:1, who:"gleb", bank:"yandex"},
         {n:"Все покупки", p:1, who:"masha", bank:"tinkoff"},
         {n:"Все покупки", p:1, who:"gleb", bank:"tinkoff"},
         {n:"Все покупки", p:1, who:"masha", bank:"ozon"},
         {n:"Все покупки", p:1, who:"gleb", bank:"ozon"},
-        {n:"На все покупки", p:0.5, who:"gleb", bank:"sber"}
+        {n:"На все покупки", p:0.5, who:"masha", bank:"sber"}
       ]}
     ]}
   ]
@@ -493,7 +498,7 @@ function buildCats(){
     });
     const old=document.querySelector('#p2 .empty'); if(old)old.remove();
     if(!vis) document.getElementById('cbox').insertAdjacentHTML('afterend',
-      '<div class="empty">Ничего не нашлось. На всё — 1% у обоих: Яндекс, Т-Банк или Озон.</div>');
+      '<div class="empty">Ничего не нашлось. На всё — Альфа Маши 2%, Т-Банк и Озон у обоих 1%, Яндекс Глеба 1%.</div>');
   };
 }
 
